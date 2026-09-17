@@ -1,1 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Doors — For My Princess</title>
 
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:#080706;
+color:#eee7dc;
+font-family:Georgia,'Times New Roman',serif;
+overflow-x:hidden;
+}
+
+#intro{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:30px;
+background:
+radial-gradient(circle at center,#34291f 0%,#120f0c 38%,#050505 75%);
+}
+
+#intro h1{
+font-size:clamp(48px,9vw,110px);
+font-weight:normal;
+letter-spacing:12px;
+margin:0 0 20px;
+}
+
+#intro p{
+font-size:18px;
+color:#bdb2a4;
+margin:7px;
+}
+
+button{
+border:1px solid #806e59;
+background:transparent;
+color:#e8ded0;
+padding:14px 34px;
+font-family:Georgia,serif;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#e8ded0;
+color:#111;
+}
+
+#enter{
+margin-top:35px;
+}
+
+#hallway{
+display:none;
+min-height:100vh;
+padding:50px 5vw 100px;
+background:
+radial-gradient(ellipse at center top,#352a20 0%,#17120e 35%,#070707 80%);
+}
+
+.header{
+text-align:center;
+margin-bottom:45px;
+}
+
+.header h2{
+font-size:40px;
+font-weight:normal;
+margin:0 0 10px;
+}
+
+#progress{
+color:#a99d90;
+font-size:15px;
+}
+
+.doors{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:24px;
+}
+
+.door{
+height:260px;
+position:relative;
+cursor:pointer;
+background:
+linear-gradient(90deg,#19130f,#3b2b1e 48%,#1a140f);
+border:2px solid #5b4734;
+box-shadow:
+0 20px 35px rgba(0,0,0,.7),
+inset 0 0 30px rgba(0,0,0,.35);
+transition:transform .35s,filter .35s,box-shadow .35s;
+}
+
+.door:hover{
+transform:translateY(-8px);
+box-shadow:
+0 30px 50px rgba(0,0,0,.85),
+0 0 25px rgba(194,155,101,.08);
+}
+
+.door:before{
+content:"";
+position:absolute;
+inset:13px;
+border:1px solid #725b45;
+}
+
+.door:after{
+content:"";
+position:absolute;
+top:0;
+left:50%;
+height:100%;
+width:1px;
+background:rgba(0,0,0,.35);
+}
+
+.number{
+position:absolute;
+top:25px;
+left:50%;
+transform:translateX(-50%);
+font-size:25px;
+color:#d5c0a7;
+z-index:2;
+}
+
+.handle{
+position:absolute;
+right:25px;
+top:50%;
+width:11px;
+height:11px;
+border-radius:50%;
+background:#c4a66d;
+box-shadow:0 0 8px rgba(196,166,109,.25);
+z-index:2;
+}
+
+.opened{
+filter:brightness(.55);
+}
+
+.special{
+border-color:#a98b61;
+box-shadow:0 0 25px rgba(194,155,101,.15),0 20px 35px #000;
+}
+
+.special .number{
+color:#f0d39c;
+}
+
+#modal{
+display:none;
+position:fixed;
+inset:0;
+z-index:20;
+background:rgba(0,0,0,.9);
+align-items:center;
+justify-content:center;
+padding:25px;
+}
+
+.message{
+width:min(680px,100%);
+background:
+radial-gradient(circle at top,#2a211a,#100d0b 70%);
+border:1px solid #68533e;
+padding:55px 45px;
+text-align:center;
+box-shadow:0 30px 100px #000;
+animation:appear .45s ease;
+}
+
+@keyframes appear{
+from{opacity:0;transform:scale(.94) translateY(15px)}
+to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.message h3{
+font-size:34px;
+font-weight:normal;
+color:#e2cfb8;
+margin-top:0;
+}
+
+.message p{
+font-size:19px;
+line-height:1.8;
+color:#c9beb2;
+}
+
+.message button{
+margin-top:20px;
+}
+
+#birthday{
+border-color:#c6a46d;
+}
+
+@media(max-width:900px){
+.doors{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+@media(max-width:600px){
+.doors{
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.door{
+height:210px;
+}
+
+.message{
+padding:40px 25px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<section id="intro">
+
+<h1>100 DOORS</h1>
+
+<p>There are 100 little things I want you to know.</p>
+<p>Only one rule: open them.</p>
+
+<button id="enter" onclick="enter()">ENTER</button>
+
+</section>
+
+
+<section id="hallway">
+
+<div class="header">
+<h2>For My Princess</h2>
+<div id="progress">0 / 100 opened</div>
+</div>
+
+<div class="doors" id="doors"></div>
+
+</section>
+
+
+<div id="modal">
+
+<div class="message">
+
+<h3 id="messageTitle"></h3>
+
+<p id="messageText"></p>
+
+<button onclick="closeDoor()">Close Door</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const messages = {
+
+1:{
+title:"The First Door",
+text:"You opened the first door. I guess that means you're curious enough to see what I made for you."
+},
+
+2:{
+title:"A Little Secret",
+text:"Sometimes I randomly smile because something reminds me of you."
+},
+
+3:{
+title:"One Thing I Love",
+text:"I love the little things you do that you probably don't even realize I notice."
+},
+
+4:{
+title:"You're Stuck With Me",
+text:"Unfortunately for you, you became my favorite person. There is no return policy."
+},
+
+5:{
+title:"Your Smile",
+text:"There are probably a million beautiful things in this world, but your smile still manages to distract me."
+},
+
+6:{
+title:"A Tiny Confession",
+text:"Sometimes I reread our conversations just because I miss you."
+},
+
+7:{
+title:"The Way You Say My Name",
+text:"There is something about hearing you say my name that makes it feel different."
+},
+
+8:{
+title:"You",
+text:"Out of all the people I could have met, somehow I got you. And I'm really glad I did."
+},
+
+9:{
+title:"If You Ever Forget",
+text:"If you ever forget how loved you are, come back and open this door again."
+},
+
+10:{
+title:"Ten Down",
+text:"Only ten doors. You have ninety more little pieces of my heart to discover."
+},
+
+29:{
+title:"September 29",
+text:"Some numbers are just numbers. And then there is this one. 29 September. Happy Birthday, my love."
+},
+
+99:{
+title:"Almost There",
+text:"You really opened ninety-nine doors for me? You're officially committed now."
+},
+
+100:{
+title:"The Last Door",
+text:"If I had to live this life again, knowing everything I know now, I would still want to find you. Happy Birthday, my love."
+}
+
+};
+
+let openedDoors=new Set();
+
+function enter(){
+
+document.getElementById("intro").style.display="none";
+
+document.getElementById("hallway").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+function createDoors(){
+
+const container=document.getElementById("doors");
+
+for(let i=1;i<=100;i++){
+
+const door=document.createElement("div");
+
+door.className="door";
+
+if(i===29 || i===100){
+door.classList.add("special");
+}
+
+door.innerHTML=`
+<div class="number">${i}</div>
+<div class="handle"></div>
+`;
+
+door.onclick=()=>openDoor(i,door);
+
+container.appendChild(door);
+
+}
+
+}
+
+function openDoor(number,door){
+
+if(!openedDoors.has(number)){
+
+openedDoors.add(number);
+
+door.classList.add("opened");
+
+document.getElementById("progress").textContent=
+openedDoors.size+" / 100 opened";
+
+}
+
+const data=messages[number] || {
+
+title:"A Little Something",
+text:"This door is waiting for something sweet from me to you."
+
+};
+
+document.getElementById("messageTitle").textContent=data.title;
+
+document.getElementById("messageText").textContent=data.text;
+
+document.getElementById("modal").style.display="flex";
+
+}
+
+function closeDoor(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+createDoors();
+
+</script>
+
+</body>
+</html>
