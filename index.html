@@ -8,229 +8,316 @@
 <style>
 *{box-sizing:border-box}
 
-body{
+html,body{
 margin:0;
-background:#080706;
-color:#eee7dc;
-font-family:Georgia,'Times New Roman',serif;
-overflow-x:hidden;
+width:100%;
+min-height:100%;
+background:#050504;
+color:#eee5d8;
+font-family:Georgia,"Times New Roman",serif;
 }
+
+body{overflow-x:hidden}
+
+/* INTRO */
 
 #intro{
-height:100vh;
+position:fixed;
+inset:0;
+z-index:100;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:30px;
 background:
-radial-gradient(circle at center,#34291f 0%,#120f0c 38%,#050505 75%);
+radial-gradient(circle at 50% 45%,#30251c 0%,#110e0b 40%,#030303 80%);
+transition:opacity 1.2s ease;
 }
 
-#intro h1{
-font-size:clamp(48px,9vw,110px);
+.intro-content{
+animation:introIn 2s ease;
+}
+
+@keyframes introIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.intro-content h1{
+font-size:clamp(55px,10vw,125px);
 font-weight:normal;
-letter-spacing:12px;
-margin:0 0 20px;
+letter-spacing:14px;
+margin:0 0 22px;
 }
 
-#intro p{
+.intro-content p{
 font-size:18px;
-color:#bdb2a4;
-margin:7px;
+color:#b9aea1;
+margin:8px;
 }
 
-button{
-border:1px solid #806e59;
+.enter{
+margin-top:38px;
+padding:15px 45px;
+border:1px solid #806c56;
 background:transparent;
-color:#e8ded0;
-padding:14px 34px;
+color:#e9ddcf;
 font-family:Georgia,serif;
 font-size:16px;
+letter-spacing:2px;
 cursor:pointer;
-transition:.3s;
+transition:.4s;
 }
 
-button:hover{
-background:#e8ded0;
-color:#111;
+.enter:hover{
+background:#e9ddcf;
+color:#100e0c;
 }
 
-#enter{
-margin-top:35px;
-}
+/* HALLWAY */
 
 #hallway{
 display:none;
 min-height:100vh;
-padding:50px 5vw 100px;
 background:
-radial-gradient(ellipse at center top,#352a20 0%,#17120e 35%,#070707 80%);
+linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.55)),
+radial-gradient(ellipse at 50% 15%,#382b20 0%,#17110d 38%,#060606 80%);
+padding-bottom:100px;
 }
 
 .header{
+position:sticky;
+top:0;
+z-index:5;
+padding:25px;
 text-align:center;
-margin-bottom:45px;
+background:linear-gradient(#090806,transparent);
 }
 
 .header h2{
-font-size:40px;
 font-weight:normal;
-margin:0 0 10px;
+font-size:34px;
+letter-spacing:3px;
+margin:0 0 8px;
 }
 
 #progress{
-color:#a99d90;
-font-size:15px;
+font-size:14px;
+color:#a99c8d;
 }
 
-.doors{
-max-width:1200px;
+/* HALLWAY FLOOR */
+
+.hall{
+position:relative;
+max-width:1250px;
 margin:auto;
+padding:50px 5vw 100px;
+}
+
+.floor{
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:50%;
+background:
+linear-gradient(90deg,transparent,#211812 50%,transparent),
+repeating-linear-gradient(
+90deg,
+rgba(255,255,255,.025) 0px,
+rgba(255,255,255,.025) 2px,
+transparent 2px,
+transparent 110px
+);
+pointer-events:none;
+opacity:.7;
+}
+
+/* DOORS */
+
+.doors{
+position:relative;
+z-index:1;
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:24px;
+gap:42px 25px;
+perspective:1000px;
+}
+
+.door-wrap{
+perspective:900px;
 }
 
 .door{
-height:260px;
+height:270px;
 position:relative;
 cursor:pointer;
 background:
-linear-gradient(90deg,#19130f,#3b2b1e 48%,#1a140f);
-border:2px solid #5b4734;
+linear-gradient(
+90deg,
+#16100c 0%,
+#302116 20%,
+#493322 50%,
+#2a1d14 80%,
+#120d09 100%
+);
+border:2px solid #5f4934;
 box-shadow:
-0 20px 35px rgba(0,0,0,.7),
-inset 0 0 30px rgba(0,0,0,.35);
-transition:transform .35s,filter .35s,box-shadow .35s;
+0 25px 35px rgba(0,0,0,.8),
+inset 0 0 35px rgba(0,0,0,.5);
+transition:
+transform .5s ease,
+filter .5s ease,
+box-shadow .5s ease;
+transform-style:preserve-3d;
 }
 
 .door:hover{
-transform:translateY(-8px);
+transform:translateY(-10px) rotateY(-2deg);
+filter:brightness(1.15);
 box-shadow:
-0 30px 50px rgba(0,0,0,.85),
-0 0 25px rgba(194,155,101,.08);
+0 35px 55px rgba(0,0,0,.9),
+0 0 30px rgba(193,158,109,.1);
 }
 
-.door:before{
+.door::before{
 content:"";
 position:absolute;
 inset:13px;
-border:1px solid #725b45;
+border:1px solid #765d45;
 }
 
-.door:after{
+.door::after{
 content:"";
 position:absolute;
-top:0;
 left:50%;
-height:100%;
+top:0;
+bottom:0;
 width:1px;
 background:rgba(0,0,0,.35);
 }
 
-.number{
+.door-number{
 position:absolute;
-top:25px;
+top:28px;
 left:50%;
 transform:translateX(-50%);
-font-size:25px;
-color:#d5c0a7;
+font-size:24px;
+color:#d5c0a6;
 z-index:2;
 }
 
 .handle{
 position:absolute;
-right:25px;
+right:24px;
 top:50%;
 width:11px;
 height:11px;
 border-radius:50%;
-background:#c4a66d;
-box-shadow:0 0 8px rgba(196,166,109,.25);
+background:#c5a66b;
+box-shadow:0 0 12px rgba(197,166,107,.25);
 z-index:2;
 }
 
-.opened{
+.door.opened{
 filter:brightness(.55);
 }
 
-.special{
-border-color:#a98b61;
-box-shadow:0 0 25px rgba(194,155,101,.15),0 20px 35px #000;
+.door.special{
+border-color:#a98758;
+box-shadow:
+0 0 30px rgba(190,150,90,.12),
+0 25px 40px rgba(0,0,0,.85);
 }
 
-.special .number{
-color:#f0d39c;
+.door.special .door-number{
+color:#f0d29b;
 }
+
+/* MODAL */
 
 #modal{
 display:none;
 position:fixed;
 inset:0;
-z-index:20;
-background:rgba(0,0,0,.9);
+z-index:200;
 align-items:center;
 justify-content:center;
 padding:25px;
+background:rgba(0,0,0,.92);
+backdrop-filter:blur(6px);
 }
 
 .message{
-width:min(680px,100%);
-background:
-radial-gradient(circle at top,#2a211a,#100d0b 70%);
-border:1px solid #68533e;
-padding:55px 45px;
+width:min(700px,100%);
+padding:60px 50px;
 text-align:center;
-box-shadow:0 30px 100px #000;
-animation:appear .45s ease;
+background:
+radial-gradient(circle at top,#30251c,#100d0a 70%);
+border:1px solid #705840;
+box-shadow:0 40px 120px #000;
+animation:messageIn .5s ease;
 }
 
-@keyframes appear{
-from{opacity:0;transform:scale(.94) translateY(15px)}
+@keyframes messageIn{
+from{opacity:0;transform:scale(.92) translateY(20px)}
 to{opacity:1;transform:scale(1) translateY(0)}
 }
 
 .message h3{
-font-size:34px;
+font-size:36px;
 font-weight:normal;
-color:#e2cfb8;
-margin-top:0;
+color:#e4cfb5;
+margin:0 0 25px;
 }
 
 .message p{
 font-size:19px;
-line-height:1.8;
-color:#c9beb2;
+line-height:1.9;
+color:#c9beb1;
+margin:0;
 }
 
-.message button{
-margin-top:20px;
+.close{
+margin-top:30px;
+padding:12px 30px;
+border:1px solid #725d47;
+background:transparent;
+color:#ddd0c1;
+font-family:Georgia,serif;
+cursor:pointer;
 }
 
-#birthday{
-border-color:#c6a46d;
+.close:hover{
+background:#ddd0c1;
+color:#111;
 }
 
-@media(max-width:900px){
+/* MOBILE */
+
+@media(max-width:950px){
 .doors{
 grid-template-columns:repeat(3,1fr);
 }
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
 .doors{
 grid-template-columns:repeat(2,1fr);
-gap:15px;
+gap:18px;
 }
 
 .door{
-height:210px;
+height:220px;
 }
 
 .message{
-padding:40px 25px;
+padding:45px 25px;
+}
+
+.message h3{
+font-size:29px;
 }
 }
 </style>
@@ -238,29 +325,49 @@ padding:40px 25px;
 
 <body>
 
+<!-- INTRO -->
+
 <section id="intro">
+
+<div class="intro-content">
 
 <h1>100 DOORS</h1>
 
 <p>There are 100 little things I want you to know.</p>
 <p>Only one rule: open them.</p>
 
-<button id="enter" onclick="enter()">ENTER</button>
+<button class="enter" onclick="enterHallway()">ENTER</button>
+
+</div>
 
 </section>
 
+
+<!-- HALLWAY -->
 
 <section id="hallway">
 
 <div class="header">
+
 <h2>For My Princess</h2>
+
 <div id="progress">0 / 100 opened</div>
+
 </div>
+
+
+<div class="hall">
 
 <div class="doors" id="doors"></div>
 
+<div class="floor"></div>
+
+</div>
+
 </section>
 
+
+<!-- MESSAGE -->
 
 <div id="modal">
 
@@ -270,7 +377,7 @@ padding:40px 25px;
 
 <p id="messageText"></p>
 
-<button onclick="closeDoor()">Close Door</button>
+<button class="close" onclick="closeDoor()">Close Door</button>
 
 </div>
 
@@ -279,11 +386,11 @@ padding:40px 25px;
 
 <script>
 
-const messages = {
+const messages={
 
 1:{
 title:"The First Door",
-text:"You opened the first door. I guess that means you're curious enough to see what I made for you."
+text:"You opened the first door. I guess you're curious enough to see what I made for you."
 },
 
 2:{
@@ -297,23 +404,23 @@ text:"I love the little things you do that you probably don't even realize I not
 },
 
 4:{
-title:"You're Stuck With Me",
-text:"Unfortunately for you, you became my favorite person. There is no return policy."
+title:"You're Annoying",
+text:"Unfortunately, you're also one of my favorite people. So I suppose I'll allow it."
 },
 
 5:{
 title:"Your Smile",
-text:"There are probably a million beautiful things in this world, but your smile still manages to distract me."
+text:"There are a million beautiful things in the world, but your smile still manages to distract me."
 },
 
 6:{
 title:"A Tiny Confession",
-text:"Sometimes I reread our conversations just because I miss you."
+text:"Sometimes I reread our conversations simply because I miss you."
 },
 
 7:{
 title:"The Way You Say My Name",
-text:"There is something about hearing you say my name that makes it feel different."
+text:"There's something about hearing you say my name that makes it feel different."
 },
 
 8:{
@@ -338,7 +445,7 @@ text:"Some numbers are just numbers. And then there is this one. 29 September. H
 
 99:{
 title:"Almost There",
-text:"You really opened ninety-nine doors for me? You're officially committed now."
+text:"You really opened ninety-nine doors for me? There's only one left."
 },
 
 100:{
@@ -350,15 +457,25 @@ text:"If I had to live this life again, knowing everything I know now, I would s
 
 let openedDoors=new Set();
 
-function enter(){
 
-document.getElementById("intro").style.display="none";
+function enterHallway(){
+
+const intro=document.getElementById("intro");
+
+intro.style.opacity="0";
+
+setTimeout(()=>{
+
+intro.style.display="none";
 
 document.getElementById("hallway").style.display="block";
 
 window.scrollTo(0,0);
 
+},1200);
+
 }
+
 
 function createDoors(){
 
@@ -366,26 +483,38 @@ const container=document.getElementById("doors");
 
 for(let i=1;i<=100;i++){
 
+const wrap=document.createElement("div");
+
+wrap.className="door-wrap";
+
 const door=document.createElement("div");
 
 door.className="door";
 
-if(i===29 || i===100){
+if(i===29||i===100){
+
 door.classList.add("special");
+
 }
 
 door.innerHTML=`
-<div class="number">${i}</div>
+
+<div class="door-number">${i}</div>
+
 <div class="handle"></div>
+
 `;
 
-door.onclick=()=>openDoor(i,door);
+door.addEventListener("click",()=>openDoor(i,door));
 
-container.appendChild(door);
+wrap.appendChild(door);
+
+container.appendChild(wrap);
 
 }
 
 }
+
 
 function openDoor(number,door){
 
@@ -400,7 +529,7 @@ openedDoors.size+" / 100 opened";
 
 }
 
-const data=messages[number] || {
+const data=messages[number]||{
 
 title:"A Little Something",
 text:"This door is waiting for something sweet from me to you."
@@ -415,11 +544,13 @@ document.getElementById("modal").style.display="flex";
 
 }
 
+
 function closeDoor(){
 
 document.getElementById("modal").style.display="none";
 
 }
+
 
 createDoors();
 
@@ -427,3 +558,6 @@ createDoors();
 
 </body>
 </html>
+
+
+
