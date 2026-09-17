@@ -6,319 +6,364 @@
 <title>100 Doors — For My Princess</title>
 
 <style>
-*{box-sizing:border-box}
-
-html,body{
-margin:0;
-width:100%;
-min-height:100%;
-background:#050504;
-color:#eee5d8;
-font-family:Georgia,"Times New Roman",serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{overflow-x:hidden}
+body {
+    background: #090806;
+    color: #eee7dc;
+    font-family: Georgia, "Times New Roman", serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(120, 88, 45, 0.12), transparent 45%),
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: auto, 100% 4px;
+    z-index: 0;
+}
+
+button {
+    font-family: inherit;
+}
 
 /* INTRO */
 
-#intro{
-position:fixed;
-inset:0;
-z-index:100;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:
-radial-gradient(circle at 50% 45%,#30251c 0%,#110e0b 40%,#030303 80%);
-transition:opacity 1.2s ease;
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at center, #21180f 0%, #0c0906 48%, #050403 100%);
+    transition: opacity 1s ease, visibility 1s ease;
 }
 
-.intro-content{
-animation:introIn 2s ease;
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-@keyframes introIn{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
+.intro-content {
+    width: 90%;
+    max-width: 700px;
 }
 
-.intro-content h1{
-font-size:clamp(55px,10vw,125px);
-font-weight:normal;
-letter-spacing:14px;
-margin:0 0 22px;
+.eyebrow {
+    letter-spacing: 6px;
+    font-size: 12px;
+    color: #a9967d;
+    margin-bottom: 25px;
 }
 
-.intro-content p{
-font-size:18px;
-color:#b9aea1;
-margin:8px;
+.intro-title {
+    font-size: clamp(55px, 12vw, 120px);
+    letter-spacing: 12px;
+    font-weight: normal;
+    color: #eee5d7;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
 }
 
-.enter{
-margin-top:38px;
-padding:15px 45px;
-border:1px solid #806c56;
-background:transparent;
-color:#e9ddcf;
-font-family:Georgia,serif;
-font-size:16px;
-letter-spacing:2px;
-cursor:pointer;
-transition:.4s;
+.intro-subtitle {
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #bcae9d;
 }
 
-.enter:hover{
-background:#e9ddcf;
-color:#100e0c;
+.enter-btn {
+    margin-top: 40px;
+    padding: 15px 38px;
+    border: 1px solid #79654d;
+    background: transparent;
+    color: #eee5d7;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-/* HALLWAY */
-
-#hallway{
-display:none;
-min-height:100vh;
-background:
-linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.55)),
-radial-gradient(ellipse at 50% 15%,#382b20 0%,#17110d 38%,#060606 80%);
-padding-bottom:100px;
+.enter-btn:hover {
+    background: #eee5d7;
+    color: #100c08;
 }
 
-.header{
-position:sticky;
-top:0;
-z-index:5;
-padding:25px;
-text-align:center;
-background:linear-gradient(#090806,transparent);
+/* MAIN */
+
+#hallway {
+    min-height: 100vh;
+    padding: 70px 25px;
+    position: relative;
+    z-index: 1;
 }
 
-.header h2{
-font-weight:normal;
-font-size:34px;
-letter-spacing:3px;
-margin:0 0 8px;
+.header {
+    text-align: center;
+    margin-bottom: 55px;
 }
 
-#progress{
-font-size:14px;
-color:#a99c8d;
+.header-small {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #907e68;
+    margin-bottom: 15px;
 }
 
-/* HALLWAY FLOOR */
-
-.hall{
-position:relative;
-max-width:1250px;
-margin:auto;
-padding:50px 5vw 100px;
+.header-title {
+    font-size: clamp(35px, 7vw, 70px);
+    font-weight: normal;
+    letter-spacing: 4px;
 }
 
-.floor{
-position:absolute;
-left:0;
-right:0;
-bottom:0;
-height:50%;
-background:
-linear-gradient(90deg,transparent,#211812 50%,transparent),
-repeating-linear-gradient(
-90deg,
-rgba(255,255,255,.025) 0px,
-rgba(255,255,255,.025) 2px,
-transparent 2px,
-transparent 110px
-);
-pointer-events:none;
-opacity:.7;
+.header-subtitle {
+    margin-top: 15px;
+    color: #958777;
+    font-size: 15px;
+}
+
+.progress {
+    margin-top: 25px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #a9967d;
 }
 
 /* DOORS */
 
-.doors{
-position:relative;
-z-index:1;
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:42px 25px;
-perspective:1000px;
+.hall {
+    max-width: 1250px;
+    margin: auto;
+    padding: 35px;
+    background:
+        linear-gradient(90deg, rgba(0,0,0,0.25), transparent 10%, transparent 90%, rgba(0,0,0,0.25)),
+        #15100c;
+    border-left: 1px solid #2b2118;
+    border-right: 1px solid #2b2118;
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,0.7),
+        0 20px 70px rgba(0,0,0,0.5);
 }
 
-.door-wrap{
-perspective:900px;
+.floor {
+    height: 18px;
+    margin: 30px -35px -35px;
+    background: linear-gradient(#3b2c1f, #120e0a);
+    border-top: 1px solid #4b3928;
 }
 
-.door{
-height:270px;
-position:relative;
-cursor:pointer;
-background:
-linear-gradient(
-90deg,
-#16100c 0%,
-#302116 20%,
-#493322 50%,
-#2a1d14 80%,
-#120d09 100%
-);
-border:2px solid #5f4934;
-box-shadow:
-0 25px 35px rgba(0,0,0,.8),
-inset 0 0 35px rgba(0,0,0,.5);
-transition:
-transform .5s ease,
-filter .5s ease,
-box-shadow .5s ease;
-transform-style:preserve-3d;
+.doors {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 35px 25px;
 }
 
-.door:hover{
-transform:translateY(-10px) rotateY(-2deg);
-filter:brightness(1.15);
-box-shadow:
-0 35px 55px rgba(0,0,0,.9),
-0 0 30px rgba(193,158,109,.1);
+.door-wrap {
+    perspective: 700px;
 }
 
-.door::before{
-content:"";
-position:absolute;
-inset:13px;
-border:1px solid #765d45;
+.door {
+    height: 250px;
+    position: relative;
+    cursor: pointer;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.025), transparent 25%, rgba(0,0,0,0.3)),
+        linear-gradient(#38291d, #1d140e);
+    border: 5px solid #4b3928;
+    box-shadow:
+        inset 0 0 0 3px #17100b,
+        inset 0 0 35px rgba(0,0,0,0.7),
+        0 15px 25px rgba(0,0,0,0.45);
+    transition: transform 0.35s ease, filter 0.35s ease;
 }
 
-.door::after{
-content:"";
-position:absolute;
-left:50%;
-top:0;
-bottom:0;
-width:1px;
-background:rgba(0,0,0,.35);
+.door:hover {
+    transform: translateY(-7px) rotateY(-3deg);
+    filter: brightness(1.15);
 }
 
-.door-number{
-position:absolute;
-top:28px;
-left:50%;
-transform:translateX(-50%);
-font-size:24px;
-color:#d5c0a6;
-z-index:2;
+.door.opened {
+    border-color: #75624a;
 }
 
-.handle{
-position:absolute;
-right:24px;
-top:50%;
-width:11px;
-height:11px;
-border-radius:50%;
-background:#c5a66b;
-box-shadow:0 0 12px rgba(197,166,107,.25);
-z-index:2;
+.door-number {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #aa967b;
 }
 
-.door.opened{
-filter:brightness(.55);
+.handle {
+    position: absolute;
+    right: 22px;
+    top: 52%;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #9c845f;
+    box-shadow: 0 0 8px rgba(200,170,110,0.25);
 }
 
-.door.special{
-border-color:#a98758;
-box-shadow:
-0 0 30px rgba(190,150,90,.12),
-0 25px 40px rgba(0,0,0,.85);
+.door-label {
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    right: 20px;
+    font-size: 14px;
+    color: #d3c5b4;
 }
 
-.door.special .door-number{
-color:#f0d29b;
+.opened-mark {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    font-size: 12px;
+    color: #b99e76;
 }
 
 /* MODAL */
 
-#modal{
-display:none;
-position:fixed;
-inset:0;
-z-index:200;
-align-items:center;
-justify-content:center;
-padding:25px;
-background:rgba(0,0,0,.92);
-backdrop-filter:blur(6px);
+#modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(7px);
 }
 
-.message{
-width:min(700px,100%);
-padding:60px 50px;
-text-align:center;
-background:
-radial-gradient(circle at top,#30251c,#100d0a 70%);
-border:1px solid #705840;
-box-shadow:0 40px 120px #000;
-animation:messageIn .5s ease;
+#modal.show {
+    display: flex;
 }
 
-@keyframes messageIn{
-from{opacity:0;transform:scale(.92) translateY(20px)}
-to{opacity:1;transform:scale(1) translateY(0)}
+.modal-box {
+    width: min(850px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 45px;
+    background:
+        radial-gradient(circle at top, #302217, #130e09 65%);
+    border: 1px solid #5a4732;
+    box-shadow: 0 30px 100px rgba(0,0,0,0.8);
+    text-align: center;
+    position: relative;
 }
 
-.message h3{
-font-size:36px;
-font-weight:normal;
-color:#e4cfb5;
-margin:0 0 25px;
+.modal-door {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #9b856c;
 }
 
-.message p{
-font-size:19px;
-line-height:1.9;
-color:#c9beb1;
-margin:0;
+.modal-title {
+    margin-top: 15px;
+    font-size: clamp(30px, 6vw, 55px);
+    font-weight: normal;
 }
 
-.close{
-margin-top:30px;
-padding:12px 30px;
-border:1px solid #725d47;
-background:transparent;
-color:#ddd0c1;
-font-family:Georgia,serif;
-cursor:pointer;
+.message {
+    margin: 25px auto;
+    max-width: 680px;
+    color: #c9bcae;
+    font-size: 17px;
+    line-height: 1.9;
+    white-space: pre-line;
 }
 
-.close:hover{
-background:#ddd0c1;
-color:#111;
+/* MEDIA */
+
+.media-container {
+    margin: 30px auto;
+    max-width: 720px;
 }
 
-/* MOBILE */
-
-@media(max-width:950px){
-.doors{
-grid-template-columns:repeat(3,1fr);
-}
-}
-
-@media(max-width:650px){
-.doors{
-grid-template-columns:repeat(2,1fr);
-gap:18px;
+.media-container img,
+.media-container video {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border: 1px solid #4c3a28;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
-.door{
-height:220px;
+.audio-player {
+    width: 100%;
+    margin-top: 15px;
 }
 
-.message{
-padding:45px 25px;
+.media-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #927d65;
+    margin-bottom: 12px;
 }
 
-.message h3{
-font-size:29px;
+.close-btn {
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: transparent;
+    border: 1px solid #66533c;
+    color: #d9ccbb;
+    cursor: pointer;
+    letter-spacing: 2px;
 }
+
+.close-btn:hover {
+    background: #d9ccbb;
+    color: #110d09;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+    .doors {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    #hallway {
+        padding: 45px 12px;
+    }
+
+    .hall {
+        padding: 20px;
+    }
+
+    .doors {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 15px;
+    }
+
+    .door {
+        height: 210px;
+    }
+
+    .floor {
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: -20px;
+    }
+
+    .modal-box {
+        padding: 30px 20px;
+    }
 }
 </style>
 </head>
@@ -328,229 +373,394 @@ font-size:29px;
 <!-- INTRO -->
 
 <section id="intro">
+    <div class="intro-content">
+        <div class="eyebrow">A LITTLE WORLD I MADE FOR YOU</div>
 
-<div class="intro-content">
+        <h1 class="intro-title">100 DOORS</h1>
 
-<h1>100 DOORS</h1>
+        <p class="intro-subtitle">
+            There are 100 little things I want you to know.<br>
+            Only one rule: open them.
+        </p>
 
-<p>There are 100 little things I want you to know.</p>
-<p>Only one rule: open them.</p>
-
-<button class="enter" onclick="enterHallway()">ENTER</button>
-
-</div>
-
+        <button class="enter-btn" onclick="enterHallway()">
+            ENTER
+        </button>
+    </div>
 </section>
 
 
 <!-- HALLWAY -->
 
-<section id="hallway">
+<main id="hallway">
 
-<div class="header">
+    <header class="header">
+        <div class="header-small">WELCOME HOME</div>
 
-<h2>For My Princess</h2>
+        <h2 class="header-title">For My Princess</h2>
 
-<div id="progress">0 / 100 opened</div>
+        <p class="header-subtitle">
+            Every door has something waiting for you.
+        </p>
 
-</div>
+        <div class="progress" id="progress">
+            0 / 100 opened
+        </div>
+    </header>
+
+    <section class="hall">
+        <div class="doors" id="doors"></div>
+        <div class="floor"></div>
+    </section>
+
+</main>
 
 
-<div class="hall">
-
-<div class="doors" id="doors"></div>
-
-<div class="floor"></div>
-
-</div>
-
-</section>
-
-
-<!-- MESSAGE -->
+<!-- MODAL -->
 
 <div id="modal">
 
-<div class="message">
+    <div class="modal-box">
 
-<h3 id="messageTitle"></h3>
+        <div class="modal-door" id="modalDoor">
+            DOOR 01
+        </div>
 
-<p id="messageText"></p>
+        <h2 class="modal-title" id="modalTitle">
+            A Little Something
+        </h2>
 
-<button class="close" onclick="closeDoor()">Close Door</button>
+        <div class="message" id="modalMessage"></div>
 
-</div>
+        <div class="media-container" id="mediaContainer"></div>
+
+        <button class="close-btn" onclick="closeDoor()">
+            BACK TO THE HALLWAY
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
 
-const messages={
+/*
+====================================================
+DOOR CONTENT
+====================================================
 
-1:{
-title:"The First Door",
-text:"You opened the first door. I guess you're curious enough to see what I made for you."
-},
+type can be:
 
-2:{
-title:"A Little Secret",
-text:"Sometimes I randomly smile because something reminds me of you."
-},
+"text"
+"image"
+"video"
+"audio"
 
-3:{
-title:"One Thing I Love",
-text:"I love the little things you do that you probably don't even realize I notice."
-},
+Later we can also combine multiple types
+inside one door.
+*/
 
-4:{
-title:"You're Annoying",
-text:"Unfortunately, you're also one of my favorite people. So I suppose I'll allow it."
-},
+const doors = {
 
-5:{
-title:"Your Smile",
-text:"There are a million beautiful things in the world, but your smile still manages to distract me."
-},
+    1: {
+        type: "text",
+        title: "The First Door",
+        message: "If you opened this one first, I already know you are curious."
+    },
 
-6:{
-title:"A Tiny Confession",
-text:"Sometimes I reread our conversations simply because I miss you."
-},
+    2: {
+        type: "text",
+        title: "Something I Love",
+        message: "I love the way you can make an ordinary conversation feel like something I want to remember."
+    },
 
-7:{
-title:"The Way You Say My Name",
-text:"There's something about hearing you say my name that makes it feel different."
-},
+    3: {
+        type: "text",
+        title: "Your Smile",
+        message: "Your smile has no business affecting my entire mood like that."
+    },
 
-8:{
-title:"You",
-text:"Out of all the people I could have met, somehow I got you. And I'm really glad I did."
-},
+    4: {
+        type: "text",
+        title: "A Tiny Secret",
+        message: "Sometimes I look at our old conversations and smile like an idiot."
+    },
 
-9:{
-title:"If You Ever Forget",
-text:"If you ever forget how loved you are, come back and open this door again."
-},
+    5: {
+        type: "text",
+        title: "For You",
+        message: "You are one of the very few people I want beside me when life gets difficult."
+    },
 
-10:{
-title:"Ten Down",
-text:"Only ten doors. You have ninety more little pieces of my heart to discover."
-},
+    6: {
+        type: "text",
+        title: "A Memory",
+        message: "Some memories are loud. Others are tiny moments that somehow stay forever."
+    },
 
-29:{
-title:"September 29",
-text:"Some numbers are just numbers. And then there is this one. 29 September. Happy Birthday, my love."
-},
+    7: {
+        type: "audio",
+        title: "Listen To Me",
+        message: "I wanted you to hear this one instead of reading it.",
+        src: "YOUR-AUDIO-FILE-HERE.mp3"
+    },
 
-99:{
-title:"Almost There",
-text:"You really opened ninety-nine doors for me? There's only one left."
-},
+    8: {
+        type: "text",
+        title: "Another Little Thing",
+        message: "You became part of my future without me even noticing when it happened."
+    },
 
-100:{
-title:"The Last Door",
-text:"If I had to live this life again, knowing everything I know now, I would still want to find you. Happy Birthday, my love."
-}
+    9: {
+        type: "image",
+        title: "A Memory Of Us",
+        message: "Some pictures deserve their own little door.",
+        src: "YOUR-IMAGE-HERE.jpg"
+    },
 
-};
+    10: {
+        type: "video",
+        title: "Watch This",
+        message: "This one is for you.",
+        src: "YOUR-VIDEO-HERE.mp4"
+    },
 
-let openedDoors=new Set();
+    29: {
+        type: "text",
+        title: "Happy Birthday, My Love",
+        message: "Today is yours. But somehow I still feel lucky that I get to exist in the same story as you."
+    },
 
+    99: {
+        type: "text",
+        title: "Almost There",
+        message: "You made it this far. One more door after this."
+    },
 
-function enterHallway(){
-
-const intro=document.getElementById("intro");
-
-intro.style.opacity="0";
-
-setTimeout(()=>{
-
-intro.style.display="none";
-
-document.getElementById("hallway").style.display="block";
-
-window.scrollTo(0,0);
-
-},1200);
-
-}
-
-
-function createDoors(){
-
-const container=document.getElementById("doors");
-
-for(let i=1;i<=100;i++){
-
-const wrap=document.createElement("div");
-
-wrap.className="door-wrap";
-
-const door=document.createElement("div");
-
-door.className="door";
-
-if(i===29||i===100){
-
-door.classList.add("special");
-
-}
-
-door.innerHTML=`
-
-<div class="door-number">${i}</div>
-
-<div class="handle"></div>
-
-`;
-
-door.addEventListener("click",()=>openDoor(i,door));
-
-wrap.appendChild(door);
-
-container.appendChild(wrap);
-
-}
-
-}
-
-
-function openDoor(number,door){
-
-if(!openedDoors.has(number)){
-
-openedDoors.add(number);
-
-door.classList.add("opened");
-
-document.getElementById("progress").textContent=
-openedDoors.size+" / 100 opened";
-
-}
-
-const data=messages[number]||{
-
-title:"A Little Something",
-text:"This door is waiting for something sweet from me to you."
+    100: {
+        type: "text",
+        title: "The Last Door",
+        message: "If you reached this door, then you opened every little piece of this world I made for you.\n\nAnd if I could put one thing behind this door, it would simply be this:\n\nI choose you.\n\nNot just for today. Not just for a birthday. For the life I hope we get to build together."
+    }
 
 };
 
-document.getElementById("messageTitle").textContent=data.title;
 
-document.getElementById("messageText").textContent=data.text;
+/*
+====================================================
+STATE
+====================================================
+*/
 
-document.getElementById("modal").style.display="flex";
+const openedDoors = new Set();
+
+
+/*
+====================================================
+ENTER
+====================================================
+*/
+
+function enterHallway() {
+
+    document.getElementById("intro").classList.add("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
-function closeDoor(){
+/*
+====================================================
+CREATE 100 DOORS
+====================================================
+*/
 
-document.getElementById("modal").style.display="none";
+function createDoors() {
+
+    const container = document.getElementById("doors");
+
+    container.innerHTML = "";
+
+    for (let i = 1; i <= 100; i++) {
+
+        const data = doors[i] || {
+            type: "text",
+            title: "A Little Something",
+            message: "This door is waiting for something sweet from me to you."
+        };
+
+        const wrap = document.createElement("div");
+        wrap.className = "door-wrap";
+
+        const door = document.createElement("div");
+        door.className = "door";
+        door.id = "door-" + i;
+
+        door.onclick = function() {
+            openDoor(i);
+        };
+
+        const number = document.createElement("div");
+        number.className = "door-number";
+        number.textContent =
+            "DOOR " + String(i).padStart(2, "0");
+
+        const handle = document.createElement("div");
+        handle.className = "handle";
+
+        const label = document.createElement("div");
+        label.className = "door-label";
+        label.textContent = data.title;
+
+        door.appendChild(number);
+        door.appendChild(handle);
+        door.appendChild(label);
+
+        wrap.appendChild(door);
+
+        container.appendChild(wrap);
+    }
 
 }
 
+
+/*
+====================================================
+OPEN DOOR
+====================================================
+*/
+
+function openDoor(number) {
+
+    const data = doors[number] || {
+        type: "text",
+        title: "A Little Something",
+        message: "This door is waiting for something sweet from me to you."
+    };
+
+    openedDoors.add(number);
+
+    const doorElement = document.getElementById("door-" + number);
+
+    if (doorElement) {
+        doorElement.classList.add("opened");
+    }
+
+    document.getElementById("modalDoor").textContent =
+        "DOOR " + String(number).padStart(2, "0");
+
+    document.getElementById("modalTitle").textContent =
+        data.title;
+
+    document.getElementById("modalMessage").textContent =
+        data.message || "";
+
+    const media = document.getElementById("mediaContainer");
+
+    media.innerHTML = "";
+
+    /*
+    -------------------------
+    IMAGE
+    -------------------------
+    */
+
+    if (data.type === "image" && data.src) {
+
+        media.innerHTML = `
+            <div class="media-label">A MEMORY</div>
+            <img src="${data.src}" alt="A memory">
+        `;
+
+    }
+
+
+    /*
+    -------------------------
+    VIDEO
+    -------------------------
+    */
+
+    if (data.type === "video" && data.src) {
+
+        media.innerHTML = `
+            <div class="media-label">A LITTLE VIDEO FOR YOU</div>
+            <video controls playsinline>
+                <source src="${data.src}">
+                Your browser does not support video.
+            </video>
+        `;
+
+    }
+
+
+    /*
+    -------------------------
+    AUDIO
+    -------------------------
+    */
+
+    if (data.type === "audio" && data.src) {
+
+        media.innerHTML = `
+            <div class="media-label">A VOICE NOTE FROM ME</div>
+            <audio class="audio-player" controls>
+                <source src="${data.src}">
+                Your browser does not support audio.
+            </audio>
+        `;
+
+    }
+
+
+    document.getElementById("modal").classList.add("show");
+
+    updateProgress();
+
+}
+
+
+/*
+====================================================
+CLOSE DOOR
+====================================================
+*/
+
+function closeDoor() {
+
+    const media = document.getElementById("mediaContainer");
+
+    media.innerHTML = "";
+
+    document.getElementById("modal").classList.remove("show");
+
+}
+
+
+/*
+====================================================
+PROGRESS
+====================================================
+*/
+
+function updateProgress() {
+
+    document.getElementById("progress").textContent =
+        openedDoors.size + " / 100 opened";
+
+}
+
+
+/*
+====================================================
+START
+====================================================
+*/
 
 createDoors();
 
@@ -558,6 +768,3 @@ createDoors();
 
 </body>
 </html>
-
-
-
