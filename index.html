@@ -3,14 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>100 Doors — For My Princess</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 * {
     box-sizing: border-box;
@@ -23,37 +18,31 @@ html {
 }
 
 body {
-    background: #070605;
+    background: #090806;
     color: #eee7dc;
     font-family: Georgia, "Times New Roman", serif;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* Cinematic grain */
-
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-
     pointer-events: none;
 
     background:
         radial-gradient(
             circle at 50% 30%,
-            rgba(130, 91, 47, 0.12),
+            rgba(120, 88, 45, 0.12),
             transparent 45%
         ),
         linear-gradient(
-            rgba(255,255,255,0.018) 1px,
+            rgba(255,255,255,0.015) 1px,
             transparent 1px
         );
 
-    background-size:
-        auto,
-        100% 4px;
-
+    background-size: auto, 100% 4px;
     z-index: 9999;
 }
 
@@ -69,7 +58,6 @@ button {
 #intro {
     position: fixed;
     inset: 0;
-
     z-index: 1000;
 
     display: flex;
@@ -77,61 +65,34 @@ button {
     justify-content: center;
 
     text-align: center;
-
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at 50% 45%,
-            rgba(91, 62, 35, 0.3),
-            rgba(25, 18, 12, 0.75) 38%,
+            rgba(91, 62, 35, 0.28),
+            rgba(25, 18, 12, 0.72) 38%,
             #050403 78%
         );
 
     transition:
-        opacity 1.3s ease,
-        visibility 1.3s ease;
+        opacity 1.2s ease,
+        visibility 1.2s ease;
 }
 
 #intro::before {
     content: "";
-
     position: absolute;
     inset: 0;
 
     background:
         radial-gradient(
             ellipse at center,
-            transparent 15%,
-            rgba(0,0,0,0.85) 100%
+            transparent 18%,
+            rgba(0,0,0,0.8) 100%
         );
 
     pointer-events: none;
-}
-
-#intro::after {
-    content: "";
-
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(150,105,55,0.08),
-            transparent 70%
-        );
-
-    filter: blur(20px);
-
-    animation: candleGlow 5s ease-in-out infinite alternate;
 }
 
 #intro.hidden {
@@ -147,24 +108,20 @@ button {
     width: 90%;
     max-width: 800px;
 
-    animation: introAppear 2s ease forwards;
+    animation: introAppear 1.8s ease forwards;
 }
 
 .intro-small {
     font-size: 12px;
     letter-spacing: 7px;
-
     color: #b8a58d;
-
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 .intro-line {
     width: 70px;
     height: 1px;
-
     background: #806b50;
-
     margin: 0 auto 35px;
 }
 
@@ -172,18 +129,16 @@ button {
     margin: 0;
 
     font-size: clamp(70px, 15vw, 150px);
-
     font-weight: normal;
 
     line-height: 0.8;
-
     letter-spacing: 12px;
 
     color: #eee5d7;
 
     text-shadow:
         0 5px 30px rgba(0,0,0,0.9),
-        0 0 70px rgba(160,120,70,0.08);
+        0 0 60px rgba(160,120,70,0.08);
 }
 
 .intro-title span {
@@ -196,11 +151,9 @@ button {
     margin-top: 45px;
 
     font-size: 17px;
-
-    line-height: 1.9;
+    line-height: 1.8;
 
     color: #bcae9d;
-
     font-style: italic;
 }
 
@@ -210,13 +163,11 @@ button {
     padding: 15px 42px;
 
     border: 1px solid #806b50;
-
     background: rgba(0,0,0,0.2);
 
     color: #eee5d7;
 
     font-size: 12px;
-
     letter-spacing: 5px;
 
     cursor: pointer;
@@ -230,7 +181,6 @@ button {
 
 .enter-btn:hover {
     background: #eee5d7;
-
     color: #100c08;
 
     transform: translateY(-3px);
@@ -240,31 +190,15 @@ button {
 }
 
 @keyframes introAppear {
-
     from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: scale(0.97);
     }
 
     to {
         opacity: 1;
         transform: scale(1);
     }
-
-}
-
-@keyframes candleGlow {
-
-    from {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1);
-    }
-
 }
 
 
@@ -273,23 +207,14 @@ button {
 ===================================================== */
 
 #hallway {
-
     min-height: 100vh;
 
     padding:
-        75px 25px
+        70px 25px
         100px;
 
     position: relative;
-
     z-index: 1;
-
-    background:
-        radial-gradient(
-            ellipse at center top,
-            rgba(72,48,29,0.16),
-            transparent 55%
-        );
 }
 
 
@@ -298,38 +223,30 @@ button {
 ===================================================== */
 
 .header {
-
     text-align: center;
-
-    margin-bottom: 60px;
+    margin-bottom: 55px;
 }
 
 .header-small {
-
     font-size: 11px;
-
-    letter-spacing: 6px;
+    letter-spacing: 5px;
 
     color: #907e68;
 
-    margin-bottom: 17px;
+    margin-bottom: 15px;
 }
 
 .header-title {
-
     font-size:
-        clamp(38px, 7vw, 72px);
+        clamp(35px, 7vw, 70px);
 
     font-weight: normal;
 
     letter-spacing: 4px;
-
-    color: #eee5d7;
 }
 
 .header-subtitle {
-
-    margin-top: 18px;
+    margin-top: 15px;
 
     color: #958777;
 
@@ -337,7 +254,6 @@ button {
 }
 
 .progress {
-
     margin-top: 25px;
 
     font-size: 12px;
@@ -349,63 +265,47 @@ button {
 
 
 /* =====================================================
-   MANSION HALL
+   HALLWAY
 ===================================================== */
 
 .hall {
-
     position: relative;
 
-    max-width: 1300px;
+    max-width: 1250px;
 
     margin: auto;
 
-    padding:
-        70px 65px
-        55px;
+    padding: 55px 50px 80px;
 
     min-height: 900px;
 
     overflow: hidden;
 
     background:
-
-        /* ceiling darkness */
-
-        linear-gradient(
-            180deg,
-            #0a0806 0%,
-            transparent 15%
-        ),
-
-        /* wall */
-
         linear-gradient(
             90deg,
-            #100c09,
-            #21160e 12%,
-            #17100b 50%,
-            #21160e 88%,
-            #100c09
+            rgba(0,0,0,0.55),
+            transparent 12%,
+            transparent 88%,
+            rgba(0,0,0,0.55)
+        ),
+        linear-gradient(
+            180deg,
+            #0b0806,
+            #1a110b 25%,
+            #17100b 75%,
+            #0b0806
         );
 
-    border-left: 2px solid #2e2116;
-    border-right: 2px solid #2e2116;
+    border-left: 2px solid #302216;
+    border-right: 2px solid #302216;
 
     box-shadow:
-
-        inset 0 0 100px rgba(0,0,0,0.85),
-
-        inset 0 100px 100px rgba(0,0,0,0.5),
-
-        0 30px 100px rgba(0,0,0,0.7);
+        inset 0 0 100px rgba(0,0,0,0.8),
+        0 25px 80px rgba(0,0,0,0.65);
 }
 
-
-/* ceiling beams */
-
 .hall::before {
-
     content: "";
 
     position: absolute;
@@ -417,46 +317,35 @@ button {
     height: 55px;
 
     background:
-
-        repeating-linear-gradient(
-            90deg,
-            #0c0907 0px,
-            #0c0907 80px,
-            #24190f 82px,
-            #24190f 95px
+        linear-gradient(
+            180deg,
+            #080604,
+            #20150d
         );
 
-    border-bottom: 2px solid #332419;
+    border-bottom: 2px solid #39291b;
 
-    opacity: 0.8;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.5);
 
     pointer-events: none;
 }
 
-
-/* distant hallway glow */
-
 .hall::after {
-
     content: "";
 
     position: absolute;
 
-    top: 50%;
-
-    left: 50%;
-
-    width: 70%;
-
+    width: 80%;
     height: 70%;
 
-    transform:
-        translate(-50%, -50%);
+    top: 15%;
+    left: 10%;
 
     background:
         radial-gradient(
             ellipse,
-            rgba(112,78,42,0.08),
+            rgba(130,90,45,0.08),
             transparent 70%
         );
 
@@ -465,97 +354,11 @@ button {
 
 
 /* =====================================================
-   FLOOR
-===================================================== */
-
-.floor {
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 85px;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #302116 0%,
-            #17100b 35%,
-            #080605 100%
-        );
-
-    border-top:
-        2px solid #4a3625;
-
-    box-shadow:
-        inset 0 20px 30px rgba(0,0,0,0.5);
-
-    z-index: 1;
-}
-
-.floor::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 25px;
-    left: 0;
-    right: 0;
-
-    height: 1px;
-
-    background: #60472e;
-
-    opacity: 0.4;
-}
-
-
-/* =====================================================
-   WALL LIGHTS
-===================================================== */
-
-.wall-light {
-
-    position: absolute;
-
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #b8915d;
-
-    box-shadow:
-        0 0 8px #b8915d,
-        0 0 30px rgba(185,145,93,0.45),
-        0 0 70px rgba(185,145,93,0.18);
-
-    z-index: 3;
-}
-
-.light-left {
-    left: 25px;
-    top: 28%;
-}
-
-.light-right {
-    right: 25px;
-    top: 28%;
-}
-
-
-/* =====================================================
-   DOOR GRID
+   DOORS
 ===================================================== */
 
 .doors {
-
     position: relative;
-
     z-index: 5;
 
     display: grid;
@@ -563,269 +366,371 @@ button {
     grid-template-columns:
         repeat(4, minmax(150px, 1fr));
 
-    gap:
-        60px 38px;
+    gap: 45px 30px;
 
-    max-width: 1120px;
+    max-width: 1100px;
 
-    margin: auto;
+    margin: 35px auto 0;
+
+    padding: 20px;
 }
-
-
-/* =====================================================
-   DOOR WRAPPER
-===================================================== */
 
 .door-wrap {
-
-    position: relative;
-
-    perspective: 1000px;
+    perspective: 900px;
 }
 
-
-/* =====================================================
-   DOOR
-===================================================== */
-
 .door {
-
     position: relative;
 
-    height: 310px;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    cursor: pointer;
+    height: 280px;
 
     background:
-
-        /* wood grain */
 
         repeating-linear-gradient(
             90deg,
             rgba(255,255,255,0.015) 0px,
             rgba(255,255,255,0.015) 2px,
             transparent 2px,
-            transparent 12px
+            transparent 13px
         ),
 
         linear-gradient(
             90deg,
-            #0b0705,
-            #28180e 10%,
-            #1b1009 50%,
-            #28180e 90%,
-            #0b0705
+            #0b0704,
+            #28180e 12%,
+            #190f09 50%,
+            #28180e 88%,
+            #0b0704
         );
 
     border:
-        3px solid #4b3523;
+        2px solid #4b3524;
+
+    border-radius: 3px;
 
     box-shadow:
+        inset 0 0 0 6px rgba(0,0,0,0.35),
+        inset 0 0 35px rgba(0,0,0,0.75),
+        0 18px 35px rgba(0,0,0,0.7);
 
-        inset 0 0 0 7px rgba(0,0,0,0.4),
+    cursor: pointer;
 
-        inset 0 0 35px rgba(0,0,0,0.8),
-
-        0 20px 40px rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     transition:
-        transform 0.45s ease,
-        box-shadow 0.45s ease,
-        border-color 0.45s ease;
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease,
+        filter 0.4s ease;
 }
-
-
-/* outer frame */
 
 .door::before {
-
     content: "";
 
     position: absolute;
 
-    inset: 16px;
+    inset: 14px;
 
     border:
-        1px solid rgba(160,125,82,0.4);
+        1px solid rgba(150,115,75,0.38);
 
     box-shadow:
-
-        inset 0 0 25px rgba(0,0,0,0.7);
+        inset 0 0 20px rgba(0,0,0,0.55);
 
     pointer-events: none;
 }
-
-
-/* upper wooden panel */
 
 .door::after {
-
     content: "";
 
     position: absolute;
 
-    left: 28px;
-    right: 28px;
+    left: 27px;
+    right: 27px;
 
-    top: 58px;
+    top: 55px;
 
-    height: 90px;
+    height: 82px;
 
     border:
-        1px solid rgba(140,105,65,0.25);
+        1px solid rgba(140,110,75,0.25);
 
     box-shadow:
-        inset 0 0 25px rgba(0,0,0,0.4);
+        inset 0 0 18px rgba(0,0,0,0.45);
 
     pointer-events: none;
 }
 
-
-/* hover */
-
 .door:hover {
-
     transform:
-        translateY(-8px)
+        translateY(-7px)
         rotateY(-3deg);
 
-    border-color: #876d4d;
+    border-color: #806b50;
+
+    filter: brightness(1.12);
 
     box-shadow:
-
-        inset 0 0 0 7px rgba(0,0,0,0.25),
-
-        inset 0 0 35px rgba(0,0,0,0.55),
-
-        0 30px 55px rgba(0,0,0,0.85),
-
-        0 0 30px rgba(140,105,65,0.12);
+        inset 0 0 0 6px rgba(0,0,0,0.25),
+        inset 0 0 35px rgba(0,0,0,0.5),
+        0 25px 50px rgba(0,0,0,0.8),
+        0 0 25px rgba(120,88,45,0.12);
 }
 
-
-/* opened */
-
 .door.opened {
-
-    border-color: #806849;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #090604,
-            #160e09,
-            #090604
-        );
+    border-color: #75624a;
 
     box-shadow:
-
-        inset 0 0 50px rgba(0,0,0,0.9),
-
+        inset 0 0 45px rgba(0,0,0,0.85),
         0 15px 30px rgba(0,0,0,0.6);
 }
 
 
 /* =====================================================
-   DOOR NUMBER
+   CINEMATIC DOOR OPENING
 ===================================================== */
 
-.door-number {
+.door.cinematic-open {
+    animation:
+        cinematicDoorOpen
+        0.65s
+        cubic-bezier(.22,.61,.36,1)
+        forwards;
+}
 
-    position: absolute;
+@keyframes cinematicDoorOpen {
 
-    top: 25px;
-    left: 0;
-    right: 0;
+    0% {
+        transform:
+            scale(1)
+            rotateY(0deg);
+        filter:
+            brightness(1);
+    }
 
-    text-align: center;
+    45% {
+        transform:
+            scale(1.08)
+            rotateY(-7deg);
+        filter:
+            brightness(1.35);
+    }
 
-    font-size: 13px;
-
-    letter-spacing: 4px;
-
-    color: #b29a7b;
-
-    z-index: 10;
+    100% {
+        transform:
+            scale(1.18)
+            rotateY(-12deg);
+        filter:
+            brightness(1.7);
+        opacity: 0.15;
+    }
 }
 
 
 /* =====================================================
-   HANDLE
+   CINEMATIC TRANSITION
 ===================================================== */
 
-.handle {
+#doorTransition {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1900;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(91,62,35,0.35),
+            rgba(0,0,0,0.96) 70%
+        );
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+#doorTransition.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.transition-door {
+    width: 260px;
+    height: 420px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.02) 0px,
+            rgba(255,255,255,0.02) 3px,
+            transparent 3px,
+            transparent 18px
+        ),
+        linear-gradient(
+            90deg,
+            #080503,
+            #321d10 15%,
+            #1b1009 50%,
+            #321d10 85%,
+            #080503
+        );
+
+    border: 3px solid #60452d;
+
+    box-shadow:
+        inset 0 0 0 10px rgba(0,0,0,0.4),
+        inset 0 0 70px rgba(0,0,0,0.8),
+        0 0 100px rgba(0,0,0,0.9);
+
+    transform:
+        perspective(1000px)
+        scale(0.25)
+        rotateY(0deg);
+
+    opacity: 0;
+
+    transition:
+        transform 0.7s cubic-bezier(.16,1,.3,1),
+        opacity 0.7s ease;
+}
+
+#doorTransition.show .transition-door {
+    transform:
+        perspective(1000px)
+        scale(1.5)
+        rotateY(-18deg);
+
+    opacity: 1;
+}
+
+.transition-door::before {
+    content: "";
 
     position: absolute;
 
-    right: 24px;
+    inset: 20px;
 
-    top: 53%;
+    border: 1px solid rgba(170,130,85,0.35);
 
-    width: 12px;
-    height: 12px;
+    box-shadow:
+        inset 0 0 35px rgba(0,0,0,0.7);
+}
+
+.transition-door::after {
+    content: "";
+
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
 
     border-radius: 50%;
 
-    background: #a98a5f;
+    right: 25px;
+    top: 50%;
+
+    background: #b09468;
 
     box-shadow:
-        0 0 7px rgba(200,170,110,0.45);
-
-    z-index: 10;
+        0 0 15px rgba(210,175,110,0.5);
 }
 
 
 /* =====================================================
-   DOOR LABEL
+   DOOR TEXT
 ===================================================== */
 
-.door-label {
-
+.door-number {
     position: absolute;
+
+    top: 18px;
+    left: 20px;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #aa967b;
+
+    z-index: 5;
+}
+
+.handle {
+    position: absolute;
+
+    right: 22px;
+    top: 52%;
+
+    width: 13px;
+    height: 13px;
+
+    border-radius: 50%;
+
+    background: #9c845f;
+
+    box-shadow:
+        0 0 8px rgba(200,170,110,0.25);
+
+    z-index: 5;
+}
+
+.door-label {
+    position: absolute;
+
+    bottom: 24px;
 
     left: 20px;
     right: 20px;
 
-    bottom: 28px;
-
-    text-align: center;
-
     font-size: 14px;
-
-    line-height: 1.4;
 
     color: #d3c5b4;
 
-    z-index: 10;
+    z-index: 5;
 }
 
 
 /* =====================================================
-   OPENED MARK
+   FLOOR
 ===================================================== */
 
-.opened-mark {
-
+.floor {
     position: absolute;
 
-    right: 18px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-    top: 20px;
+    height: 70px;
 
-    font-size: 11px;
+    background:
+        linear-gradient(
+            180deg,
+            #3a2a1d,
+            #17100b 45%,
+            #080605
+        );
 
-    color: #c0a477;
+    border-top:
+        2px solid #4b3826;
 
-    z-index: 10;
+    box-shadow:
+        inset 0 15px 25px rgba(0,0,0,0.5);
+
+    z-index: 2;
 }
 
 
@@ -834,7 +739,6 @@ button {
 ===================================================== */
 
 #modal {
-
     position: fixed;
 
     inset: 0;
@@ -844,25 +748,22 @@ button {
     display: none;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 25px;
 
     background:
-        rgba(0,0,0,0.88);
+        rgba(0,0,0,0.84);
 
     backdrop-filter:
-        blur(9px);
+        blur(7px);
 }
 
 #modal.show {
-
     display: flex;
 }
 
 .modal-box {
-
     width:
         min(850px, 100%);
 
@@ -875,14 +776,7 @@ button {
     padding:
         45px;
 
-    position:
-        relative;
-
-    text-align:
-        center;
-
     background:
-
         radial-gradient(
             circle at top,
             #302217,
@@ -893,11 +787,45 @@ button {
         1px solid #5a4732;
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,0.9);
+        0 30px 100px rgba(0,0,0,0.8);
+
+    text-align:
+        center;
+
+    position:
+        relative;
+
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+}
+
+#modal.show .modal-box {
+    animation:
+        modalReveal
+        0.55s
+        cubic-bezier(.16,1,.3,1)
+        0.15s
+        forwards;
+}
+
+@keyframes modalReveal {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.92)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
 }
 
 .modal-door {
-
     font-size: 11px;
 
     letter-spacing: 5px;
@@ -906,7 +834,6 @@ button {
 }
 
 .modal-title {
-
     margin-top: 15px;
 
     font-size:
@@ -914,13 +841,9 @@ button {
 
     font-weight:
         normal;
-
-    color:
-        #eee5d7;
 }
 
 .message {
-
     margin:
         25px auto;
 
@@ -940,13 +863,7 @@ button {
         pre-line;
 }
 
-
-/* =====================================================
-   MEDIA
-===================================================== */
-
 .media-container {
-
     margin:
         30px auto;
 
@@ -956,7 +873,6 @@ button {
 
 .media-container img,
 .media-container video {
-
     width:
         100%;
 
@@ -974,7 +890,6 @@ button {
 }
 
 .audio-player {
-
     width:
         100%;
 
@@ -983,7 +898,6 @@ button {
 }
 
 .media-label {
-
     font-size:
         11px;
 
@@ -997,13 +911,7 @@ button {
         12px;
 }
 
-
-/* =====================================================
-   CLOSE BUTTON
-===================================================== */
-
 .close-btn {
-
     margin-top:
         20px;
 
@@ -1024,13 +932,9 @@ button {
 
     letter-spacing:
         2px;
-
-    transition:
-        0.3s ease;
 }
 
 .close-btn:hover {
-
     background:
         #d9ccbb;
 
@@ -1045,109 +949,88 @@ button {
 
 @media (max-width: 1000px) {
 
-    .hall {
-
-        padding:
-            65px 40px
-            50px;
-    }
-
     .doors {
-
         grid-template-columns:
             repeat(3, 1fr);
-
-        gap:
-            45px 25px;
     }
 
-    .door {
-
-        height:
-            285px;
-    }
 }
 
-
-@media (max-width: 700px) {
+@media (max-width: 650px) {
 
     #hallway {
-
         padding:
-            50px 12px
+            45px 12px
             80px;
     }
 
-    .header {
-
-        margin-bottom:
-            40px;
-    }
-
     .hall {
-
         padding:
-            55px 18px
-            45px;
-
-        min-height:
-            800px;
+            45px 15px
+            70px;
     }
 
     .doors {
-
         grid-template-columns:
             repeat(2, 1fr);
 
         gap:
-            28px 15px;
+            20px 15px;
+
+        padding:
+            10px;
     }
 
     .door {
-
         height:
-            220px;
-    }
-
-    .door-number {
-
-        top:
-            19px;
-
-        font-size:
-            11px;
-
-        letter-spacing:
-            3px;
+            210px;
     }
 
     .door-label {
+        left:
+            10px;
+
+        right:
+            10px;
 
         bottom:
-            20px;
+            18px;
 
         font-size:
             12px;
     }
 
-    .handle {
+    .door-number {
+        left:
+            12px;
 
+        top:
+            14px;
+
+        font-size:
+            11px;
+    }
+
+    .handle {
         right:
             15px;
     }
 
     .modal-box {
-
         padding:
             30px 20px;
     }
+
+    .transition-door {
+        width: 180px;
+        height: 300px;
+    }
+
 }
 
-
-@media (max-width: 480px) {
+@media (max-width: 430px) {
 
     .intro-small {
-
         font-size:
             9px;
 
@@ -1156,101 +1039,38 @@ button {
     }
 
     .intro-title {
-
         font-size:
-            65px;
+            60px;
 
         letter-spacing:
             7px;
     }
 
     .intro-title span {
-
         letter-spacing:
-            9px;
+            10px;
 
         margin-left:
-            9px;
+            8px;
     }
 
     .intro-subtitle {
-
         font-size:
-            15px;
-    }
-
-    .enter-btn {
-
-        padding:
-            14px 32px;
-    }
-
-    .hall {
-
-        padding:
-            50px 12px
-            40px;
+            14px;
     }
 
     .door {
-
         height:
-            195px;
-    }
-
-    .door::before {
-
-        inset:
-            10px;
-    }
-
-    .door::after {
-
-        left:
-            20px;
-
-        right:
-            20px;
-
-        top:
-            45px;
-
-        height:
-            65px;
-    }
-
-    .door-label {
-
-        left:
-            10px;
-
-        right:
-            10px;
-
-        bottom:
-            16px;
-
-        font-size:
-            11px;
+            190px;
     }
 
 }
 
-
-/* =====================================================
-   END CSS
-===================================================== */
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
 
 <section id="intro">
 
@@ -1284,12 +1104,7 @@ button {
 </section>
 
 
-<!-- =====================================================
-     HALLWAY
-===================================================== -->
-
 <main id="hallway">
-
 
     <header class="header">
 
@@ -1317,9 +1132,6 @@ button {
 
     <section class="hall">
 
-        <div class="wall-light light-left"></div>
-        <div class="wall-light light-right"></div>
-
         <div
             class="doors"
             id="doors"
@@ -1332,9 +1144,14 @@ button {
 </main>
 
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
+<!-- CINEMATIC TRANSITION -->
+
+<div id="doorTransition">
+
+    <div class="transition-door"></div>
+
+</div>
+
 
 <div id="modal">
 
@@ -1377,13 +1194,7 @@ button {
 
 
 <script>
-
-
-/* =====================================================
-   DOOR CONTENT
-===================================================== */
-
-const doors = {
+   const doors = {
 
     1: {
         type: "text",
@@ -1417,4 +1228,486 @@ const doors = {
         type: "text",
         title: "For You",
         message:
-            "You
+            "You are one of the very few people I want beside me when life gets difficult."
+    },
+
+    6: {
+        type: "text",
+        title: "A Memory",
+        message:
+            "Some memories are loud. Others are tiny moments that somehow stay forever."
+    },
+
+    7: {
+        type: "audio",
+        title: "Listen To Me",
+        message:
+            "I wanted you to hear this one instead of reading it.",
+        src:
+            "YOUR-AUDIO-FILE-HERE.mp3"
+    },
+
+    8: {
+        type: "text",
+        title: "Another Little Thing",
+        message:
+            "You became part of my future without me even noticing when it happened."
+    },
+
+    9: {
+        type: "image",
+        title: "A Memory Of Us",
+        message:
+            "Some pictures deserve their own little door.",
+        src:
+            "YOUR-IMAGE-HERE.jpg"
+    },
+
+    10: {
+        type: "video",
+        title: "Watch This",
+        message:
+            "This one is for you.",
+        src:
+            "YOUR-VIDEO-HERE.mp4"
+    },
+
+    29: {
+        type: "text",
+        title: "Happy Birthday, My Love",
+        message:
+            "Today is yours. But somehow I still feel lucky that I get to exist in the same story as you."
+    },
+
+    99: {
+        type: "text",
+        title: "Almost There",
+        message:
+            "You made it this far. One more door after this."
+    },
+
+    100: {
+        type: "text",
+        title: "The Last Door",
+        message:
+            "If you reached this door, then you opened every little piece of this world I made for you.\n\nAnd if I could put one thing behind this door, it would simply be this:\n\nI choose you.\n\nNot just for today. Not just for a birthday. For the life I hope we get to build together."
+    }
+
+};
+
+
+const openedDoors = new Set();
+
+let openingDoor = false;
+
+
+/* =====================================================
+   ENTER HALLWAY
+===================================================== */
+
+function enterHallway() {
+
+    const intro =
+        document.getElementById("intro");
+
+    intro.classList.add("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   CREATE 100 DOORS
+===================================================== */
+
+function createDoors() {
+
+    const container =
+        document.getElementById("doors");
+
+    container.innerHTML = "";
+
+    for (
+        let i = 1;
+        i <= 100;
+        i++
+    ) {
+
+        const data =
+            doors[i] || {
+
+                type: "text",
+
+                title:
+                    "A Little Something",
+
+                message:
+                    "This door is waiting for something sweet from me to you."
+
+            };
+
+
+        const wrap =
+            document.createElement("div");
+
+        wrap.className =
+            "door-wrap";
+
+
+        const door =
+            document.createElement("div");
+
+        door.className =
+            "door";
+
+        door.id =
+            "door-" + i;
+
+
+        door.onclick =
+            function() {
+
+                openDoor(i);
+
+            };
+
+
+        const number =
+            document.createElement("div");
+
+        number.className =
+            "door-number";
+
+        number.textContent =
+            "DOOR " +
+            String(i).padStart(2, "0");
+
+
+        const handle =
+            document.createElement("div");
+
+        handle.className =
+            "handle";
+
+
+        const label =
+            document.createElement("div");
+
+        label.className =
+            "door-label";
+
+        label.textContent =
+            data.title;
+
+
+        door.appendChild(number);
+
+        door.appendChild(handle);
+
+        door.appendChild(label);
+
+        wrap.appendChild(door);
+
+        container.appendChild(wrap);
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN DOOR
+===================================================== */
+
+function openDoor(number) {
+
+    if (openingDoor) {
+        return;
+    }
+
+    const data =
+        doors[number] || {
+
+            type: "text",
+
+            title:
+                "A Little Something",
+
+            message:
+                "This door is waiting for something sweet from me to you."
+
+        };
+
+
+    const doorElement =
+        document.getElementById(
+            "door-" + number
+        );
+
+    const transition =
+        document.getElementById(
+            "doorTransition"
+        );
+
+
+    openingDoor = true;
+
+    openedDoors.add(number);
+
+
+    /*
+       STEP 1
+       Animate the actual door.
+    */
+
+    if (doorElement) {
+
+        doorElement.classList.add(
+            "cinematic-open"
+        );
+
+    }
+
+
+    /*
+       STEP 2
+       Bring in the giant cinematic door.
+    */
+
+    setTimeout(function() {
+
+        transition.classList.add("show");
+
+    }, 120);
+
+
+    /*
+       STEP 3
+       Prepare the content while
+       the transition is happening.
+    */
+
+    document.getElementById(
+        "modalDoor"
+    ).textContent =
+        "DOOR " +
+        String(number).padStart(2, "0");
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        data.title;
+
+
+    document.getElementById(
+        "modalMessage"
+    ).textContent =
+        data.message || "";
+
+
+    const media =
+        document.getElementById(
+            "mediaContainer"
+        );
+
+
+    media.innerHTML = "";
+
+
+    if (
+        data.type === "image" &&
+        data.src
+    ) {
+
+        media.innerHTML = `
+            <div class="media-label">
+                A MEMORY
+            </div>
+
+            <img
+                src="${data.src}"
+                alt="A memory"
+            >
+        `;
+
+    }
+
+
+    if (
+        data.type === "video" &&
+        data.src
+    ) {
+
+        media.innerHTML = `
+            <div class="media-label">
+                A LITTLE VIDEO FOR YOU
+            </div>
+
+            <video
+                controls
+                playsinline
+            >
+
+                <source src="${data.src}">
+
+                Your browser does not support video.
+
+            </video>
+        `;
+
+    }
+
+
+    if (
+        data.type === "audio" &&
+        data.src
+    ) {
+
+        media.innerHTML = `
+            <div class="media-label">
+                A VOICE NOTE FROM ME
+            </div>
+
+            <audio
+                class="audio-player"
+                controls
+            >
+
+                <source src="${data.src}">
+
+                Your browser does not support audio.
+
+            </audio>
+        `;
+
+    }
+
+
+    /*
+       STEP 4
+       Reveal the actual content.
+    */
+
+    setTimeout(function() {
+
+        document
+            .getElementById("modal")
+            .classList
+            .add("show");
+
+
+        updateProgress();
+
+    }, 650);
+
+
+    /*
+       STEP 5
+       Finish the transition.
+    */
+
+    setTimeout(function() {
+
+        transition.classList.remove("show");
+
+        openingDoor = false;
+
+    }, 1000);
+
+}
+
+
+/* =====================================================
+   CLOSE DOOR
+===================================================== */
+
+function closeDoor() {
+
+    const media =
+        document.getElementById(
+            "mediaContainer"
+        );
+
+    media.innerHTML = "";
+
+
+    document
+        .getElementById("modal")
+        .classList
+        .remove("show");
+
+
+    const transition =
+        document.getElementById(
+            "doorTransition"
+        );
+
+    transition.classList.remove("show");
+
+
+    document
+        .querySelectorAll(".cinematic-open")
+        .forEach(function(door) {
+
+            door.classList.remove(
+                "cinematic-open"
+            );
+
+        });
+
+
+    openingDoor = false;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+function updateProgress() {
+
+    document.getElementById(
+        "progress"
+    ).textContent =
+        openedDoors.size +
+        " / 100 opened";
+
+}
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeDoor();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+createDoors();
+
+</script>
+
+</body>
+</html>
