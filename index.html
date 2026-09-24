@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 Doors — For My Princess</title>
+
+<title>100 Doors For My Princess</title>
 
 <style>
 
@@ -18,81 +19,53 @@ html {
 }
 
 body {
-    background: #090806;
-    color: #eee7dc;
-    font-family: Georgia, "Times New Roman", serif;
     min-height: 100vh;
     overflow-x: hidden;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
 
     background:
         radial-gradient(
-            circle at 50% 30%,
-            rgba(120, 88, 45, 0.12),
-            transparent 45%
-        ),
-        linear-gradient(
-            rgba(255,255,255,0.015) 1px,
-            transparent 1px
+            circle at top,
+            #241914 0%,
+            #0d0a08 48%,
+            #050403 100%
         );
 
-    background-size: auto, 100% 4px;
-    z-index: 9999;
+    color: #f3e8d8;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 }
 
-button {
-    font-family: inherit;
-}
-
-
-/* =====================================================
+/* =========================
    INTRO
-===================================================== */
+========================= */
 
 #intro {
     position: fixed;
     inset: 0;
+
     z-index: 1000;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    padding: 30px;
+
     text-align: center;
-    overflow: hidden;
 
     background:
         radial-gradient(
-            circle at 50% 45%,
-            rgba(91, 62, 35, 0.28),
-            rgba(25, 18, 12, 0.72) 38%,
-            #050403 78%
+            circle,
+            #211712 0%,
+            #080605 70%
         );
 
     transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
-}
-
-#intro::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 18%,
-            rgba(0,0,0,0.8) 100%
-        );
-
-    pointer-events: none;
+        opacity 1s ease,
+        visibility 1s ease;
 }
 
 #intro.hidden {
@@ -102,277 +75,129 @@ button {
 }
 
 .intro-content {
-    position: relative;
-    z-index: 2;
-
-    width: 90%;
-    max-width: 800px;
-
-    animation: introAppear 1.8s ease forwards;
+    width: 100%;
+    max-width: 650px;
 }
 
 .intro-small {
-    font-size: 12px;
-    letter-spacing: 7px;
-    color: #b8a58d;
-    margin-bottom: 24px;
-}
+    margin-bottom: 25px;
 
-.intro-line {
-    width: 70px;
-    height: 1px;
-    background: #806b50;
-    margin: 0 auto 35px;
+    color: #b9a28c;
+
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
 .intro-title {
-    margin: 0;
+    margin-bottom: 20px;
 
-    font-size: clamp(70px, 15vw, 150px);
+    font-size: clamp(45px, 10vw, 90px);
     font-weight: normal;
-
-    line-height: 0.8;
-    letter-spacing: 12px;
-
-    color: #eee5d7;
-
-    text-shadow:
-        0 5px 30px rgba(0,0,0,0.9),
-        0 0 60px rgba(160,120,70,0.08);
-}
-
-.intro-title span {
-    font-size: 0.72em;
-    letter-spacing: 18px;
-    margin-left: 18px;
+    letter-spacing: 3px;
 }
 
 .intro-subtitle {
-    margin-top: 45px;
+    margin-bottom: 40px;
 
-    font-size: 17px;
+    color: #c7b5a3;
+
+    font-size: 18px;
     line-height: 1.8;
-
-    color: #bcae9d;
-    font-style: italic;
 }
 
-.enter-btn {
-    margin-top: 42px;
+.enter-button {
+    padding: 15px 32px;
 
-    padding: 15px 42px;
+    border: 1px solid #9d8268;
 
-    border: 1px solid #806b50;
-    background: rgba(0,0,0,0.2);
+    background: transparent;
 
-    color: #eee5d7;
+    color: #f3e8d8;
 
-    font-size: 12px;
-    letter-spacing: 5px;
+    font-family: inherit;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 
     cursor: pointer;
 
     transition:
-        background 0.4s ease,
-        color 0.4s ease,
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
 }
 
-.enter-btn:hover {
-    background: #eee5d7;
-    color: #100c08;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,0.6);
+.enter-button:hover {
+    background: #f3e8d8;
+    color: #120d09;
+    transform: translateY(-2px);
 }
 
-@keyframes introAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* =====================================================
-   MAIN
-===================================================== */
+/* =========================
+   HALLWAY
+========================= */
 
 #hallway {
     min-height: 100vh;
 
     padding:
-        70px 25px
-        100px;
-
-    position: relative;
-    z-index: 1;
+        35px 20px 80px;
 }
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 .header {
+    width: min(1200px, 100%);
+
+    margin:
+        0 auto 45px;
+
     text-align: center;
-    margin-bottom: 55px;
-}
-
-.header-small {
-    font-size: 11px;
-    letter-spacing: 5px;
-
-    color: #907e68;
-
-    margin-bottom: 15px;
 }
 
 .header-title {
+    margin-bottom: 10px;
+
     font-size:
-        clamp(35px, 7vw, 70px);
+        clamp(30px, 6vw, 55px);
 
     font-weight: normal;
-
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 }
 
 .header-subtitle {
-    margin-top: 15px;
-
-    color: #958777;
+    color: #a99582;
 
     font-size: 15px;
+    letter-spacing: 1px;
 }
 
 .progress {
-    margin-top: 25px;
+    margin-top: 18px;
 
-    font-size: 12px;
+    color: #8f7c6a;
 
-    letter-spacing: 3px;
-
-    color: #a9967d;
+    font-size: 13px;
+    letter-spacing: 2px;
 }
 
-
-/* =====================================================
-   HALLWAY
-===================================================== */
-
-.hall {
-    position: relative;
-
-    max-width: 1250px;
-
-    margin: auto;
-
-    padding: 55px 50px 80px;
-
-    min-height: 900px;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,0,0,0.55),
-            transparent 12%,
-            transparent 88%,
-            rgba(0,0,0,0.55)
-        ),
-        linear-gradient(
-            180deg,
-            #0b0806,
-            #1a110b 25%,
-            #17100b 75%,
-            #0b0806
-        );
-
-    border-left: 2px solid #302216;
-    border-right: 2px solid #302216;
-
-    box-shadow:
-        inset 0 0 100px rgba(0,0,0,0.8),
-        0 25px 80px rgba(0,0,0,0.65);
-}
-
-.hall::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 55px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #080604,
-            #20150d
-        );
-
-    border-bottom: 2px solid #39291b;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.5);
-
-    pointer-events: none;
-}
-
-.hall::after {
-    content: "";
-
-    position: absolute;
-
-    width: 80%;
-    height: 70%;
-
-    top: 15%;
-    left: 10%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(130,90,45,0.08),
-            transparent 70%
-        );
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
+/* =========================
    DOORS
-===================================================== */
+========================= */
 
-.doors {
-    position: relative;
-    z-index: 5;
+#doors {
+    width: min(1200px, 100%);
+
+    margin: 0 auto;
 
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(150px, 1fr));
+        repeat(
+            auto-fit,
+            minmax(155px, 1fr)
+        );
 
-    gap: 45px 30px;
-
-    max-width: 1100px;
-
-    margin: 35px auto 0;
-
-    padding: 20px;
+    gap: 22px;
 }
 
 .door-wrap {
@@ -382,48 +207,33 @@ button {
 .door {
     position: relative;
 
-    height: 280px;
-
-    background:
-
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.015) 0px,
-            rgba(255,255,255,0.015) 2px,
-            transparent 2px,
-            transparent 13px
-        ),
-
-        linear-gradient(
-            90deg,
-            #0b0704,
-            #28180e 12%,
-            #190f09 50%,
-            #28180e 88%,
-            #0b0704
-        );
-
-    border:
-        2px solid #4b3524;
-
-    border-radius: 3px;
-
-    box-shadow:
-        inset 0 0 0 6px rgba(0,0,0,0.35),
-        inset 0 0 35px rgba(0,0,0,0.75),
-        0 18px 35px rgba(0,0,0,0.7);
-
-    cursor: pointer;
+    height: 220px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    background:
+        linear-gradient(
+            145deg,
+            #3b271c,
+            #1d120d 55%,
+            #0e0907
+        );
+
+    border: 1px solid #614836;
+
+    box-shadow:
+        inset 0 0 0 7px rgba(0,0,0,.15),
+        inset 0 0 30px rgba(0,0,0,.5),
+        0 15px 30px rgba(0,0,0,.35);
+
+    cursor: pointer;
+
     transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease,
-        border-color 0.4s ease,
-        filter 0.4s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
 .door::before {
@@ -431,637 +241,271 @@ button {
 
     position: absolute;
 
-    inset: 14px;
+    inset: 12px;
 
-    border:
-        1px solid rgba(150,115,75,0.38);
-
-    box-shadow:
-        inset 0 0 20px rgba(0,0,0,0.55);
-
-    pointer-events: none;
-}
-
-.door::after {
-    content: "";
-
-    position: absolute;
-
-    left: 27px;
-    right: 27px;
-
-    top: 55px;
-
-    height: 82px;
-
-    border:
-        1px solid rgba(140,110,75,0.25);
-
-    box-shadow:
-        inset 0 0 18px rgba(0,0,0,0.45);
+    border: 1px solid
+        rgba(188,155,122,.25);
 
     pointer-events: none;
 }
 
 .door:hover {
-    transform:
-        translateY(-7px)
-        rotateY(-3deg);
+    transform: translateY(-6px);
 
-    border-color: #806b50;
-
-    filter: brightness(1.12);
+    border-color: #a7896b;
 
     box-shadow:
-        inset 0 0 0 6px rgba(0,0,0,0.25),
-        inset 0 0 35px rgba(0,0,0,0.5),
-        0 25px 50px rgba(0,0,0,0.8),
-        0 0 25px rgba(120,88,45,0.12);
+        inset 0 0 30px rgba(0,0,0,.55),
+        0 20px 40px rgba(0,0,0,.55);
 }
-
-.door.opened {
-    border-color: #75624a;
-
-    box-shadow:
-        inset 0 0 45px rgba(0,0,0,0.85),
-        0 15px 30px rgba(0,0,0,0.6);
-}
-
-
-/* =====================================================
-   CINEMATIC DOOR OPENING
-===================================================== */
-
-.door.cinematic-open {
-    animation:
-        cinematicDoorOpen
-        0.65s
-        cubic-bezier(.22,.61,.36,1)
-        forwards;
-}
-
-@keyframes cinematicDoorOpen {
-
-    0% {
-        transform:
-            scale(1)
-            rotateY(0deg);
-        filter:
-            brightness(1);
-    }
-
-    45% {
-        transform:
-            scale(1.08)
-            rotateY(-7deg);
-        filter:
-            brightness(1.35);
-    }
-
-    100% {
-        transform:
-            scale(1.18)
-            rotateY(-12deg);
-        filter:
-            brightness(1.7);
-        opacity: 0.15;
-    }
-}
-
-
-/* =====================================================
-   CINEMATIC TRANSITION
-===================================================== */
-
-#doorTransition {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1900;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    pointer-events: none;
-
-    opacity: 0;
-    visibility: hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(91,62,35,0.35),
-            rgba(0,0,0,0.96) 70%
-        );
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
-}
-
-#doorTransition.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.transition-door {
-    width: 260px;
-    height: 420px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(255,255,255,0.02) 0px,
-            rgba(255,255,255,0.02) 3px,
-            transparent 3px,
-            transparent 18px
-        ),
-        linear-gradient(
-            90deg,
-            #080503,
-            #321d10 15%,
-            #1b1009 50%,
-            #321d10 85%,
-            #080503
-        );
-
-    border: 3px solid #60452d;
-
-    box-shadow:
-        inset 0 0 0 10px rgba(0,0,0,0.4),
-        inset 0 0 70px rgba(0,0,0,0.8),
-        0 0 100px rgba(0,0,0,0.9);
-
-    transform:
-        perspective(1000px)
-        scale(0.25)
-        rotateY(0deg);
-
-    opacity: 0;
-
-    transition:
-        transform 0.7s cubic-bezier(.16,1,.3,1),
-        opacity 0.7s ease;
-}
-
-#doorTransition.show .transition-door {
-    transform:
-        perspective(1000px)
-        scale(1.5)
-        rotateY(-18deg);
-
-    opacity: 1;
-}
-
-.transition-door::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 20px;
-
-    border: 1px solid rgba(170,130,85,0.35);
-
-    box-shadow:
-        inset 0 0 35px rgba(0,0,0,0.7);
-}
-
-.transition-door::after {
-    content: "";
-
-    position: absolute;
-
-    width: 14px;
-    height: 14px;
-
-    border-radius: 50%;
-
-    right: 25px;
-    top: 50%;
-
-    background: #b09468;
-
-    box-shadow:
-        0 0 15px rgba(210,175,110,0.5);
-}
-
-
-/* =====================================================
-   DOOR TEXT
-===================================================== */
 
 .door-number {
     position: absolute;
 
-    top: 18px;
-    left: 20px;
+    top: 20px;
 
-    font-size: 13px;
+    color: #a99078;
 
+    font-size: 11px;
     letter-spacing: 3px;
+}
 
-    color: #aa967b;
+.door-label {
+    max-width: 125px;
 
-    z-index: 5;
+    color: #eadcca;
+
+    font-size: 18px;
+    line-height: 1.35;
+
+    text-align: center;
 }
 
 .handle {
     position: absolute;
 
+    top: 50%;
     right: 22px;
-    top: 52%;
 
-    width: 13px;
-    height: 13px;
+    width: 9px;
+    height: 9px;
 
     border-radius: 50%;
 
-    background: #9c845f;
+    background: #b29370;
 
     box-shadow:
-        0 0 8px rgba(200,170,110,0.25);
-
-    z-index: 5;
+        0 0 8px
+        rgba(178,147,112,.3);
 }
 
-.door-label {
-    position: absolute;
-
-    bottom: 24px;
-
-    left: 20px;
-    right: 20px;
-
-    font-size: 14px;
-
-    color: #d3c5b4;
-
-    z-index: 5;
+.cinematic-open {
+    transform:
+        perspective(900px)
+        rotateY(-12deg)
+        scale(.98);
 }
 
+/* =========================
+   TRANSITION
+========================= */
 
-/* =====================================================
-   FLOOR
-===================================================== */
+#doorTransition {
+    position: fixed;
+    inset: 0;
 
-.floor {
-    position: absolute;
+    z-index: 900;
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    background: #000;
 
-    height: 70px;
+    opacity: 0;
 
-    background:
-        linear-gradient(
-            180deg,
-            #3a2a1d,
-            #17100b 45%,
-            #080605
-        );
+    pointer-events: none;
 
-    border-top:
-        2px solid #4b3826;
-
-    box-shadow:
-        inset 0 15px 25px rgba(0,0,0,0.5);
-
-    z-index: 2;
+    transition:
+        opacity .45s ease;
 }
 
+#doorTransition.show {
+    opacity: 1;
+}
 
-/* =====================================================
+/* =========================
    MODAL
-===================================================== */
+========================= */
 
 #modal {
     position: fixed;
-
     inset: 0;
 
-    z-index: 2000;
+    z-index: 950;
 
-    display: none;
-
+    display: flex;
     align-items: center;
     justify-content: center;
 
     padding: 25px;
 
     background:
-        rgba(0,0,0,0.84);
+        rgba(0,0,0,.78);
 
-    backdrop-filter:
-        blur(7px);
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
 }
 
 #modal.show {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal-box {
-    width:
-        min(850px, 100%);
+    position: relative;
 
-    max-height:
-        90vh;
+    width: min(720px, 100%);
+    max-height: 90vh;
 
-    overflow-y:
-        auto;
+    overflow-y: auto;
 
     padding:
-        45px;
+        35px 30px 30px;
 
     background:
-        radial-gradient(
-            circle at top,
-            #302217,
-            #130e09 65%
+        linear-gradient(
+            145deg,
+            #211611,
+            #100b08
         );
 
-    border:
-        1px solid #5a4732;
+    border: 1px solid #5c4535;
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,0.8);
-
-    text-align:
-        center;
-
-    position:
-        relative;
-
-    opacity: 0;
-    transform: scale(0.92) translateY(20px);
-}
-
-#modal.show .modal-box {
-    animation:
-        modalReveal
-        0.55s
-        cubic-bezier(.16,1,.3,1)
-        0.15s
-        forwards;
-}
-
-@keyframes modalReveal {
-
-    from {
-        opacity: 0;
-        transform:
-            scale(0.92)
-            translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            scale(1)
-            translateY(0);
-    }
+        0 30px 80px
+        rgba(0,0,0,.7);
 }
 
 .modal-door {
+    margin-bottom: 12px;
+
+    color: #8f7864;
+
     font-size: 11px;
-
-    letter-spacing: 5px;
-
-    color: #9b856c;
+    letter-spacing: 4px;
 }
 
 .modal-title {
-    margin-top: 15px;
+    margin-bottom: 25px;
 
     font-size:
-        clamp(30px, 6vw, 55px);
+        clamp(27px, 6vw, 42px);
 
-    font-weight:
-        normal;
+    font-weight: normal;
 }
 
-.message {
-    margin:
-        25px auto;
+.modal-message {
+    color: #d8c8b8;
 
-    max-width:
-        680px;
+    font-size: 17px;
+    line-height: 1.9;
 
-    color:
-        #c9bcae;
-
-    font-size:
-        17px;
-
-    line-height:
-        1.9;
-
-    white-space:
-        pre-line;
+    white-space: pre-line;
 }
 
-.media-container {
-    margin:
-        30px auto;
+.close-button {
+    position: absolute;
 
-    max-width:
-        720px;
+    top: 15px;
+    right: 17px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #5d4737;
+
+    background: transparent;
+
+    color: #d7c5b3;
+
+    font-size: 20px;
+
+    cursor: pointer;
 }
 
-.media-container img,
-.media-container video {
-    width:
-        100%;
+.close-button:hover {
+    background: #2b1d15;
+}
 
-    max-height:
-        500px;
+/* =========================
+   MEDIA
+========================= */
 
-    object-fit:
-        contain;
+#mediaContainer {
+    margin-top: 28px;
+}
 
-    border:
-        1px solid #4c3a28;
+#mediaContainer img,
+#mediaContainer video {
+    display: block;
 
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.5);
+    width: 100%;
+    max-height: 65vh;
+
+    object-fit: contain;
+
+    border: 1px solid #49372b;
 }
 
 .audio-player {
-    width:
-        100%;
-
-    margin-top:
-        15px;
+    width: 100%;
 }
 
 .media-label {
-    font-size:
-        11px;
+    margin-bottom: 10px;
 
-    letter-spacing:
-        3px;
+    color: #927a65;
 
-    color:
-        #927d65;
-
-    margin-bottom:
-        12px;
+    font-size: 10px;
+    letter-spacing: 3px;
 }
 
-.close-btn {
-    margin-top:
-        20px;
+/* =========================
+   MOBILE
+========================= */
 
-    padding:
-        12px 28px;
-
-    background:
-        transparent;
-
-    border:
-        1px solid #66533c;
-
-    color:
-        #d9ccbb;
-
-    cursor:
-        pointer;
-
-    letter-spacing:
-        2px;
-}
-
-.close-btn:hover {
-    background:
-        #d9ccbb;
-
-    color:
-        #110d09;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 1000px) {
-
-    .doors {
-        grid-template-columns:
-            repeat(3, 1fr);
-    }
-
-}
-
-@media (max-width: 650px) {
+@media (max-width: 600px) {
 
     #hallway {
         padding:
-            45px 12px
-            80px;
+            25px 14px 60px;
     }
 
-    .hall {
-        padding:
-            45px 15px
-            70px;
-    }
-
-    .doors {
+    #doors {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2, minmax(0, 1fr));
 
-        gap:
-            20px 15px;
-
-        padding:
-            10px;
+        gap: 13px;
     }
 
     .door {
-        height:
-            210px;
+        height: 190px;
     }
 
     .door-label {
-        left:
-            10px;
-
-        right:
-            10px;
-
-        bottom:
-            18px;
-
-        font-size:
-            12px;
-    }
-
-    .door-number {
-        left:
-            12px;
-
-        top:
-            14px;
-
-        font-size:
-            11px;
-    }
-
-    .handle {
-        right:
-            15px;
+        max-width: 110px;
+        font-size: 15px;
     }
 
     .modal-box {
         padding:
-            30px 20px;
+            30px 20px 25px;
     }
 
-    .transition-door {
-        width: 180px;
-        height: 300px;
-    }
-
-}
-
-@media (max-width: 430px) {
-
-    .intro-small {
-        font-size:
-            9px;
-
-        letter-spacing:
-            5px;
-    }
-
-    .intro-title {
-        font-size:
-            60px;
-
-        letter-spacing:
-            7px;
-    }
-
-    .intro-title span {
-        letter-spacing:
-            10px;
-
-        margin-left:
-            8px;
-    }
-
-    .intro-subtitle {
-        font-size:
-            14px;
-    }
-
-    .door {
-        height:
-            190px;
+    .modal-message {
+        font-size: 16px;
+        line-height: 1.8;
     }
 
 }
@@ -1071,50 +515,41 @@ button {
 
 <body>
 
-
-<section id="intro">
+<div id="intro">
 
     <div class="intro-content">
 
         <div class="intro-small">
-            FOR MY PRINCESS
+            A little something for you
         </div>
 
-        <div class="intro-line"></div>
-
         <h1 class="intro-title">
-            100<br>
-            <span>DOORS</span>
+            100 Doors
         </h1>
 
         <p class="intro-subtitle">
-            A hundred little pieces of my heart,<br>
-            waiting for you.
+            One hundred little pieces of us.<br>
+            Take your time.
         </p>
 
         <button
-            class="enter-btn"
-            onclick="enterHallway()"
-        >
-            ENTER
+            class="enter-button"
+            id="enterButton"
+            type="button">
+            Enter
         </button>
 
     </div>
 
-</section>
+</div>
 
-
-<main id="hallway">
+<section id="hallway">
 
     <header class="header">
 
-        <div class="header-small">
-            WELCOME HOME
-        </div>
-
-        <h2 class="header-title">
-            For My Princess
-        </h2>
+        <h1 class="header-title">
+            100 Doors For My Princess
+        </h1>
 
         <p class="header-subtitle">
             Every door has something waiting for you.
@@ -1122,84 +557,62 @@ button {
 
         <div
             class="progress"
-            id="progress"
-        >
+            id="progress">
             0 / 100 opened
         </div>
 
     </header>
 
+    <div id="doors"></div>
 
-    <section class="hall">
+</section>
 
-        <div
-            class="doors"
-            id="doors"
-        ></div>
-
-        <div class="floor"></div>
-
-    </section>
-
-</main>
-
-
-<!-- CINEMATIC TRANSITION -->
-
-<div id="doorTransition">
-
-    <div class="transition-door"></div>
-
-</div>
-
+<div id="doorTransition"></div>
 
 <div id="modal">
 
     <div class="modal-box">
 
+        <button
+            class="close-button"
+            id="closeButton"
+            type="button"
+            aria-label="Close">
+            ×
+        </button>
+
         <div
             class="modal-door"
-            id="modalDoor"
-        >
-            DOOR 01
+            id="modalDoor">
         </div>
 
         <h2
             class="modal-title"
-            id="modalTitle"
-        >
-            A Little Something
+            id="modalTitle">
         </h2>
 
         <div
-            class="message"
-            id="modalMessage"
-        ></div>
+            class="modal-message"
+            id="modalMessage">
+        </div>
 
         <div
-            class="media-container"
-            id="mediaContainer"
-        ></div>
-
-        <button
-            class="close-btn"
-            onclick="closeDoor()"
-        >
-            BACK TO THE HALLWAY
-        </button>
+            id="mediaContainer">
+        </div>
 
     </div>
 
 </div>
 
-
 <script>
-const doors = {
-    1: {
-        type: "text",
-        title: "The First Door",
-        message: `Happy birthday, princess. ❤️
-        You found the first door.
+    const doors = {
+
+1: {
+    type: "text",
+    title: "The First Door",
+    message: `Happy birthday, princess. ❤️
+
+You found the first door.
 
 That means the rules have already changed.
 
@@ -1222,12 +635,12 @@ So take your time, princess.
 Don't skip anything. I KNOW YOU WONT
 
 And whatever you do, don't assume you know what's behind the next door.`
-    },
+},
 
-    2: {
-        type: "text",
-        title: "You Probably Never Noticed",
-        message: `You probably never noticed this,
+2: {
+    type: "text",
+    title: "You Probably Never Noticed",
+    message: `You probably never noticed this,
 
 but there are little things you do that stay in my head for way longer than they should.
 
@@ -1246,12 +659,12 @@ You probably don't realize how much these little things mean to me.
 But I notice them.
 
 I always have.`
-    },
+},
 
-    3: {
-        type: "text",
-        title: "The First Time",
-        message: `I still remember our first fight, and all the little moments we've spent together.
+3: {
+    type: "text",
+    title: "The First Time",
+    message: `I still remember our first fight, and all the little moments we've spent together.
 
 But one thing I'll never forget is the first time you came to me when you were upset.
 
@@ -1262,12 +675,12 @@ When I saw my phone blowing up, I got very concerned. Then I saw your messages a
 I don't know why, but that moment stayed with me.
 
 Maybe because it was one of the first times I realized that when something hurts you, I genuinely want to be the person you come to.`
-    },
+},
 
-    4: {
-        type: "text",
-        title: "When I Miss You",
-        message: `When I miss you,
+4: {
+    type: "text",
+    title: "When I Miss You",
+    message: `When I miss you,
 
 I look at your pictures.
 
@@ -1280,41 +693,41 @@ Maybe it's just a little piece of you when I can't have you around.
 And somehow, seeing your face makes missing you feel a little easier.
 
 Until I miss you even more 😭`
-    },
+},
 
-    5: {
-        type: "text",
-        title: "For You",
-        message: `You are the only one I want beside me when life gets difficult.
+5: {
+    type: "text",
+    title: "For You",
+    message: `You are the only one I want beside me when life gets difficult.
 
 And I hope you know that I want to be that person for you too.
 
 Whatever life throws at us, I want you to know you don't have to face it alone.`
-    },
+},
 
-    6: {
-        type: "text",
-        title: "Your Smile",
-        message: `Your smile has no business affecting my entire mood like that.
+6: {
+    type: "text",
+    title: "Your Smile",
+    message: `Your smile has no business affecting my entire mood like that.
 
 I MEAN LIKE WOW.
 
 HOW ARE YOU SO PRETTY AND HOW ARE U MINEEE??? 😭❤️`
-    },
+},
 
-    7: {
-        type: "audio",
-        title: "Listen To Me",
-        message: `Okay, enough reading.
+7: {
+    type: "audio",
+    title: "Listen To Me",
+    message: `Okay, enough reading.
 
 I want you to hear this one.`,
-        src: "door7.mp3"
-    },
+    src: "door7.mp3"
+},
 
-    8: {
-        type: "text",
-        title: "A Tiny Confession",
-        message: `Sometimes I catch myself thinking about you during the most random moments.
+8: {
+    type: "text",
+    title: "A Tiny Confession",
+    message: `Sometimes I catch myself thinking about you during the most random moments.
 
 I'll be doing something completely normal, and suddenly...
 
@@ -1323,20 +736,29 @@ there you are in my head again.
 Honestly, I don't even mind.
 
 I love having you there.`
-    },
+},
 
-    9: {
+9: {
     type: "image",
     title: "Just You",
-    message:
-        "Some pictures deserve their own little door.\n\nNot because of where they were taken.\n\nNot because of what was happening.\n\nJust because it's you.\n\nAnd honestly, I could probably stare at this picture for way too long.\n\nYou really are that pretty, princess.",
-    src:
-        "Screenshot_20260924-032634.png"
+    message: `Some pictures deserve their own little door.
+
+Not because of where they were taken.
+
+Not because of what was happening.
+
+Just because it's you.
+
+And honestly, I could probably stare at this picture for way too long.
+
+You really are that pretty, princess.`,
+    src: "Screenshot_20260924-032634.png"
 },
-    10: {
+
+10: {
     type: "text",
     title: "One Thing I Hope You Know",
-    message: `There's one thing I hope you never forget.
+    message: `There’s one thing I hope you never forget.
 
 You don't have to be perfect for me to love you.
 
@@ -1425,7 +847,7 @@ D) All of the above 😭
 
 Question 2:
 
-What do you call me way too often? 
+What do you call me way too often?
 
 A) Dickhead
 B) Handsome
@@ -1457,7 +879,8 @@ it's that I'm absolutely obsessed with you.
 
 I love you, princess. ❤️`
 },
-    15: {
+
+15: {
     type: "text",
     title: "I Knew",
     message: `I don't think I've ever told you this properly.
@@ -1489,7 +912,8 @@ I'm not saying that because of everything we've built since then.
 I'm saying it because, from the very beginning,
 
 I already knew it was going to be you. ❤️`
-},
+}
+        ,
 
 16: {
     type: "text",
@@ -1950,7 +1374,7 @@ having you right there will probably feel like the biggest luxury in the world.
 
 And when that day comes...
 
-I'm not letting you go anywhere.
+I'm not letting you go anywhere.`
 },
 
 27: {
@@ -2184,420 +1608,606 @@ I notice more than you think.
 
 And I love you for every single one of them. ❤️`
 },
+        32: {
+    type: "text",
+    title: "Door 32",
+    message: `This door is waiting for something special. ❤️`
+},
+
+33: {
+    type: "text",
+    title: "Door 33",
+    message: `Something for you is coming here.`
+},
+
+34: {
+    type: "text",
+    title: "Door 34",
+    message: `A little secret for later. 👀`
+},
+
+35: {
+    type: "text",
+    title: "Door 35",
+    message: `This one isn't ready yet, princess. ❤️`
+},
+
+36: {
+    type: "text",
+    title: "Door 36",
+    message: `Something special belongs here.`
+},
+
+37: {
+    type: "text",
+    title: "Door 37",
+    message: `Come back to this one later. 🤭`
+},
+
+38: {
+    type: "text",
+    title: "Door 38",
+    message: `Still keeping this one a secret.`
+},
+
+39: {
+    type: "text",
+    title: "Door 39",
+    message: `There's more waiting for you. ❤️`
+},
+
+40: {
+    type: "text",
+    title: "Door 40",
+    message: `Forty doors down.
+
+And we're nowhere near finished. 👀`
+},
+
+41: {
+    type: "text",
+    title: "Door 41",
+    message: `Something special will live behind this door.`
+},
+
+42: {
+    type: "text",
+    title: "Door 42",
+    message: `Classified information. 🫡`
+},
+
+43: {
+    type: "text",
+    title: "Door 43",
+    message: `This one is being saved for later. ❤️`
+},
+
+44: {
+    type: "text",
+    title: "Door 44",
+    message: `A little surprise is waiting here.`
+},
+
+45: {
+    type: "text",
+    title: "Door 45",
+    message: `Not ready yet, princess.`
+},
+
+46: {
+    type: "text",
+    title: "Door 46",
+    message: `There's something I want to tell you here.`
+},
+
+47: {
+    type: "text",
+    title: "Door 47",
+    message: `Secret door.
+
+No spoilers. 👀`
+},
+
+48: {
+    type: "text",
+    title: "Door 48",
+    message: `You'll find out eventually.`
+},
+
+49: {
+    type: "text",
+    title: "Door 49",
+    message: `One more door before fifty. ❤️`
+},
+
+50: {
+    type: "text",
+    title: "Door 50",
+    message: `HALFWAY THERE. 😭❤️
+
+Fifty doors down.
+
+Fifty more to go.`
+},
+
+51: {
+    type: "text",
+    title: "Door 51",
+    message: `Something special is being saved for you.`
+},
+
+52: {
+    type: "text",
+    title: "Door 52",
+    message: `Patience, princess. ❤️`
+},
+
+53: {
+    type: "text",
+    title: "Door 53",
+    message: `This door has a secret.`
+},
+
+54: {
+    type: "text",
+    title: "Door 54",
+    message: `I'll tell you later. 👀`
+},
+
+55: {
+    type: "text",
+    title: "Door 55",
+    message: `Still classified.`
+},
+
+56: {
+    type: "text",
+    title: "Door 56",
+    message: `Something cute belongs here. ❤️`
+},
+
+57: {
+    type: "text",
+    title: "Door 57",
+    message: `Not yet.
+
+Keep going.`
+},
+
+58: {
+    type: "text",
+    title: "Door 58",
+    message: `Another little secret for you.`
+},
+
+59: {
+    type: "text",
+    title: "Door 59",
+    message: `You're getting closer. 👀`
+},
+
+60: {
+    type: "text",
+    title: "Door 60",
+    message: `SIXTY.
+
+You really opened sixty doors for me. 😭❤️`
+},
+
+61: {
+    type: "text",
+    title: "Door 61",
+    message: `Something I admire about you will go here.`
+},
+
+62: {
+    type: "text",
+    title: "Door 62",
+    message: `A little reminder for my princess. ❤️`
+},
+
+63: {
+    type: "text",
+    title: "Door 63",
+    message: `You're loved.
+
+That's all I'm saying for now.`
+},
+
+64: {
+    type: "text",
+    title: "Door 64",
+    message: `There's more I want to say.`
+},
+
+65: {
+    type: "text",
+    title: "Door 65",
+    message: `Something meaningful is waiting here. ❤️`
+},
+
+66: {
+    type: "text",
+    title: "Door 66",
+    message: `Okay...
+
+I definitely have something planned for this one. 😭`
+},
+
+67: {
+    type: "text",
+    title: "Door 67",
+    message: `Another secret.
+
+Don't ask questions. 🤨`
+},
+
+68: {
+    type: "text",
+    title: "Door 68",
+    message: `You'll understand this one later. ❤️`
+},
+
+69: {
+    type: "text",
+    title: "Door 69",
+    message: `We're getting closer.
+
+That's all you're getting. 👀`
+},
+
+70: {
+    type: "text",
+    title: "Door 70",
+    message: `SEVENTY.
+
+Only thirty left.
+
+Keep going, princess. ❤️`
+},
+
+71: {
+    type: "text",
+    title: "Door 71",
+    message: `Something about you belongs here.`
+},
+
+72: {
+    type: "text",
+    title: "Door 72",
+    message: `This door is waiting for its moment.`
+},
+
+73: {
+    type: "text",
+    title: "Door 73",
+    message: `A little piece of us will go here. ❤️`
+},
+
+74: {
+    type: "text",
+    title: "Door 74",
+    message: `Still a secret.`
+},
+
+75: {
+    type: "text",
+    title: "Door 75",
+    message: `SEVENTY FIVE.
+
+You're getting dangerously close now. 👀❤️`
+},
+
+76: {
+    type: "text",
+    title: "Door 76",
+    message: `Something from me to you.`
+},
+
+77: {
+    type: "text",
+    title: "Door 77",
+    message: `Lucky number?
+
+Maybe. 🤭`
+},
+
+78: {
+    type: "text",
+    title: "Door 78",
+    message: `There's something waiting behind this one.`
+},
+
+79: {
+    type: "text",
+    title: "Door 79",
+    message: `Almost there.
+
+But not quite.`
+},
+
+80: {
+    type: "text",
+    title: "Door 80",
+    message: `EIGHTY.
+
+Twenty doors left. 😭❤️`
+},
+
+81: {
+    type: "text",
+    title: "Door 81",
+    message: `Something I've wanted to tell you.`
+},
+
+82: {
+    type: "text",
+    title: "Door 82",
+    message: `This one is for you, princess. ❤️`
+},
+
+83: {
+    type: "text",
+    title: "Door 83",
+    message: `A secret is still hiding here.`
+},
+
+84: {
+    type: "text",
+    title: "Door 84",
+    message: `You'll find out soon.`
+},
+
+85: {
+    type: "text",
+    title: "Door 85",
+    message: `Something special is coming. ❤️`
+},
+
+86: {
+    type: "text",
+    title: "Door 86",
+    message: `Don't stop now.`
+},
+
+87: {
+    type: "text",
+    title: "Door 87",
+    message: `We're getting very close. 👀`
+},
+
+88: {
+    type: "text",
+    title: "Door 88",
+    message: `Another little surprise for my girl.`
+},
+
+89: {
+    type: "text",
+    title: "Door 89",
+    message: `Only eleven more. ❤️`
+},
+
+90: {
+    type: "text",
+    title: "Door 90",
+    message: `NINETY.
+
+Ten.
+
+More.
+
+Doors. 😭`
+},
+
+91: {
+    type: "text",
+    title: "Door 91",
+    message: `The final stretch starts here.`
+},
+
+92: {
+    type: "text",
+    title: "Door 92",
+    message: `Something important is waiting ahead. ❤️`
+},
+
+93: {
+    type: "text",
+    title: "Door 93",
+    message: `Don't assume you know what's coming. 👀`
+},
+
+94: {
+    type: "text",
+    title: "Door 94",
+    message: `We're getting close now.`
+},
+
+95: {
+    type: "text",
+    title: "Door 95",
+    message: `Five more doors. ❤️`
+},
+
+96: {
+    type: "text",
+    title: "Door 96",
+    message: `Four.`
+},
+
+97: {
+    type: "text",
+    title: "Door 97",
+    message: `Three.`
+},
+
+98: {
+    type: "text",
+    title: "Door 98",
+    message: `Two.
+
+Don't get too excited yet. 👀`
+},
+
+99: {
+    type: "text",
+    title: "Door 99",
+    message: `One door remains.
+
+But I'm not letting you open it that easily. ❤️`
+},
+
+100: {
+    type: "text",
+    title: "The Last Door",
+    message: `You made it.
+
+All one hundred doors.
+
+I'll fill this one properly when the time comes.
+
+For now...
+
+just know that every door was made for you. ❤️`
+}
+
 };
 
+const enterButton = document.getElementById("enterButton");
+const intro = document.getElementById("intro");
+const hallway = document.getElementById("hallway");
+const doorsContainer = document.getElementById("doors");
 
-const openedDoors = new Set();
+const modal = document.getElementById("modal");
+const closeButton = document.getElementById("closeButton");
+const modalDoor = document.getElementById("modalDoor");
+const modalTitle = document.getElementById("modalTitle");
+const modalMessage = document.getElementById("modalMessage");
+const mediaContainer = document.getElementById("mediaContainer");
 
-let openingDoor = false;
+const progressText = document.getElementById("progress");
 
-
-/* =====================================================
-   ENTER HALLWAY
-===================================================== */
+let openedDoors = new Set();
 
 function enterHallway() {
-
-    const intro =
-        document.getElementById("intro");
-
     intro.classList.add("hidden");
+    hallway.classList.remove("hidden");
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
+    createDoors();
+    updateProgress();
 }
-
-
-/* =====================================================
-   CREATE 100 DOORS
-===================================================== */
 
 function createDoors() {
+    doorsContainer.innerHTML = "";
 
-    const container =
-        document.getElementById("doors");
+    for (let number = 1; number <= 100; number++) {
+        const doorData = doors[number];
 
-    container.innerHTML = "";
+        if (!doorData) continue;
 
-    for (
-        let i = 1;
-        i <= 100;
-        i++
-    ) {
+        const door = document.createElement("button");
 
-        const data =
-            doors[i] || {
+        door.type = "button";
+        door.className = "door";
 
-                type: "text",
+        if (openedDoors.has(number)) {
+            door.classList.add("opened");
+        }
 
-                title:
-                    "A Little Something",
+        door.innerHTML = `
+            <span class="door-number">${number}</span>
+            <span class="door-label">${doorData.title}</span>
+        `;
 
-                message:
-                    "This door is waiting for something sweet from me to you."
+        door.addEventListener("click", function () {
+            openDoor(number);
+        });
 
-            };
-
-
-        const wrap =
-            document.createElement("div");
-
-        wrap.className =
-            "door-wrap";
-
-
-        const door =
-            document.createElement("div");
-
-        door.className =
-            "door";
-
-        door.id =
-            "door-" + i;
-
-
-        door.onclick =
-            function() {
-
-                openDoor(i);
-
-            };
-
-
-        const number =
-            document.createElement("div");
-
-        number.className =
-            "door-number";
-
-        number.textContent =
-            "DOOR " +
-            String(i).padStart(2, "0");
-
-
-        const handle =
-            document.createElement("div");
-
-        handle.className =
-            "handle";
-
-
-        const label =
-            document.createElement("div");
-
-        label.className =
-            "door-label";
-
-        label.textContent =
-            data.title;
-
-
-        door.appendChild(number);
-
-        door.appendChild(handle);
-
-        door.appendChild(label);
-
-        wrap.appendChild(door);
-
-        container.appendChild(wrap);
-
+        doorsContainer.appendChild(door);
     }
-
 }
 
-
-/* =====================================================
-   OPEN DOOR
-===================================================== */
-
 function openDoor(number) {
+    const doorData = doors[number];
 
-    if (openingDoor) {
-        return;
-    }
-
-    const data =
-        doors[number] || {
-
-            type: "text",
-
-            title:
-                "A Little Something",
-
-            message:
-                "This door is waiting for something sweet from me to you."
-
-        };
-
-
-    const doorElement =
-        document.getElementById(
-            "door-" + number
-        );
-
-    const transition =
-        document.getElementById(
-            "doorTransition"
-        );
-
-
-    openingDoor = true;
+    if (!doorData) return;
 
     openedDoors.add(number);
 
+    modalDoor.textContent = `DOOR ${number}`;
+    modalTitle.textContent = doorData.title;
 
-    /*
-       STEP 1
-       Animate the actual door.
-    */
+    modalMessage.textContent = doorData.message;
 
-    if (doorElement) {
+    mediaContainer.innerHTML = "";
 
-        doorElement.classList.add(
-            "cinematic-open"
-        );
+    if (doorData.type === "image" && doorData.src) {
+        const image = document.createElement("img");
 
+        image.src = doorData.src;
+        image.alt = doorData.title;
+
+        mediaContainer.appendChild(image);
     }
 
+    if (doorData.type === "video" && doorData.src) {
+        const video = document.createElement("video");
 
-    /*
-       STEP 2
-       Bring in the giant cinematic door.
-    */
+        video.src = doorData.src;
+        video.controls = true;
+        video.playsInline = true;
 
-    setTimeout(function() {
-
-        transition.classList.add("show");
-
-    }, 120);
-
-
-    /*
-       STEP 3
-       Prepare the content while
-       the transition is happening.
-    */
-
-    document.getElementById(
-        "modalDoor"
-    ).textContent =
-        "DOOR " +
-        String(number).padStart(2, "0");
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        data.title;
-
-
-    document.getElementById(
-        "modalMessage"
-    ).textContent =
-        data.message || "";
-
-
-    const media =
-        document.getElementById(
-            "mediaContainer"
-        );
-
-
-    media.innerHTML = "";
-
-
-    if (
-        data.type === "image" &&
-        data.src
-    ) {
-
-        media.innerHTML = `
-            <div class="media-label">
-                A MEMORY
-            </div>
-
-            <img
-                src="${data.src}"
-                alt="A memory"
-            >
-        `;
-
+        mediaContainer.appendChild(video);
     }
 
+    if (doorData.type === "audio" && doorData.src) {
+        const audio = document.createElement("audio");
 
-    if (
-        data.type === "video" &&
-        data.src
-    ) {
+        audio.src = doorData.src;
+        audio.controls = true;
 
-        media.innerHTML = `
-            <div class="media-label">
-                A LITTLE VIDEO FOR YOU
-            </div>
-
-            <video
-                controls
-                playsinline
-            >
-
-                <source src="${data.src}">
-
-                Your browser does not support video.
-
-            </video>
-        `;
-
+        mediaContainer.appendChild(audio);
     }
 
+    modal.classList.remove("hidden");
 
-    if (
-        data.type === "audio" &&
-        data.src
-    ) {
-
-        media.innerHTML = `
-            <div class="media-label">
-                A VOICE NOTE FROM ME
-            </div>
-
-            <audio
-                class="audio-player"
-                controls
-            >
-
-                <source src="${data.src}">
-
-                Your browser does not support audio.
-
-            </audio>
-        `;
-
-    }
-
-
-    /*
-       STEP 4
-       Reveal the actual content.
-    */
-
-    setTimeout(function() {
-
-        document
-            .getElementById("modal")
-            .classList
-            .add("show");
-
-
-        updateProgress();
-
-    }, 650);
-
-
-    /*
-       STEP 5
-       Finish the transition.
-    */
-
-    setTimeout(function() {
-
-        transition.classList.remove("show");
-
-        openingDoor = false;
-
-    }, 1000);
-
+    createDoors();
+    updateProgress();
 }
-
-
-/* =====================================================
-   CLOSE DOOR
-===================================================== */
 
 function closeDoor() {
+    modal.classList.add("hidden");
 
-    const media =
-        document.getElementById(
-            "mediaContainer"
-        );
-
-    media.innerHTML = "";
-
-
-    document
-        .getElementById("modal")
-        .classList
-        .remove("show");
-
-
-    const transition =
-        document.getElementById(
-            "doorTransition"
-        );
-
-    transition.classList.remove("show");
-
-
-    document
-        .querySelectorAll(".cinematic-open")
-        .forEach(function(door) {
-
-            door.classList.remove(
-                "cinematic-open"
-            );
-
-        });
-
-
-    openingDoor = false;
-
+    mediaContainer.innerHTML = "";
 }
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
 
 function updateProgress() {
+    const count = openedDoors.size;
 
-    document.getElementById(
-        "progress"
-    ).textContent =
-        openedDoors.size +
-        " / 100 opened";
-
+    if (progressText) {
+        progressText.textContent = `${count} / 100 doors opened`;
+    }
 }
 
+enterButton.addEventListener("click", enterHallway);
 
-/* =====================================================
-   ESCAPE KEY
-===================================================== */
+closeButton.addEventListener("click", closeDoor);
 
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key === "Escape"
-        ) {
-
-            closeDoor();
-
-        }
-
+modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+        closeDoor();
     }
-);
+});
 
-
-/* =====================================================
-   START
-===================================================== */
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeDoor();
+    }
+});
 
 createDoors();
-
+updateProgress();
 </script>
 
 </body>
