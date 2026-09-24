@@ -14,28 +14,30 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
-
     background:
         radial-gradient(
-            circle at top,
-            #241914 0%,
-            #0d0a08 48%,
+            circle at center,
+            rgba(80, 54, 36, 0.16),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #080605 0%,
+            #100b08 45%,
             #050403 100%
         );
 
-    color: #f3e8d8;
+    color: #eee4d5;
+    font-family: Georgia, "Times New Roman", serif;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    overflow-x: hidden;
 }
 
 /* =========================
@@ -46,26 +48,30 @@ body {
     position: fixed;
     inset: 0;
 
-    z-index: 1000;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 30px;
 
     text-align: center;
 
     background:
         radial-gradient(
-            circle,
-            #211712 0%,
-            #080605 70%
+            circle at center,
+            rgba(101, 67, 42, 0.22),
+            transparent 42%
+        ),
+        linear-gradient(
+            135deg,
+            #080605,
+            #120c08,
+            #050403
         );
 
+    z-index: 1000;
+
     transition:
-        opacity 1s ease,
-        visibility 1s ease;
+        opacity 1.4s ease,
+        visibility 1.4s ease;
 }
 
 #intro.hidden {
@@ -75,62 +81,63 @@ body {
 }
 
 .intro-content {
-    width: 100%;
-    max-width: 650px;
+    width: min(90%, 650px);
+    padding: 30px;
 }
 
 .intro-small {
-    margin-bottom: 25px;
-
-    color: #b9a28c;
-
-    font-size: 13px;
+    color: #a99883;
+    font-size: 12px;
     letter-spacing: 5px;
     text-transform: uppercase;
+    margin-bottom: 22px;
 }
 
 .intro-title {
-    margin-bottom: 20px;
-
-    font-size: clamp(45px, 10vw, 90px);
+    font-size: clamp(42px, 9vw, 82px);
     font-weight: normal;
     letter-spacing: 3px;
+    line-height: 1.05;
+
+    text-shadow:
+        0 0 30px rgba(255, 220, 170, 0.08);
 }
 
 .intro-subtitle {
-    margin-bottom: 40px;
+    margin-top: 22px;
 
-    color: #c7b5a3;
+    color: #9e9182;
 
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.8;
 }
 
-.enter-button {
-    padding: 15px 32px;
+#enterButton {
+    margin-top: 42px;
 
-    border: 1px solid #9d8268;
+    padding: 15px 34px;
 
     background: transparent;
+    color: #e9dccb;
 
-    color: #f3e8d8;
+    border: 1px solid rgba(214, 184, 145, 0.45);
 
     font-family: inherit;
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
 
     cursor: pointer;
 
     transition:
-        background .3s ease,
-        color .3s ease,
-        transform .3s ease;
+        background 0.4s ease,
+        border-color 0.4s ease,
+        transform 0.4s ease;
 }
 
-.enter-button:hover {
-    background: #f3e8d8;
-    color: #120d09;
+#enterButton:hover {
+    background: rgba(188, 148, 105, 0.12);
+    border-color: rgba(214, 184, 145, 0.8);
     transform: translateY(-2px);
 }
 
@@ -142,98 +149,129 @@ body {
     min-height: 100vh;
 
     padding:
-        35px 20px 80px;
+        50px
+        clamp(18px, 5vw, 70px)
+        80px;
+
+    opacity: 1;
+
+    animation: hallwayAppear 1.4s ease;
 }
 
-.header {
-    width: min(1200px, 100%);
+#hallway.hidden {
+    display: none;
+}
 
-    margin:
-        0 auto 45px;
+@keyframes hallwayAppear {
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hallway-header {
+    max-width: 1000px;
+    margin: 0 auto 45px;
 
     text-align: center;
 }
 
-.header-title {
-    margin-bottom: 10px;
+.hallway-eyebrow {
+    color: #887865;
 
-    font-size:
-        clamp(30px, 6vw, 55px);
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
 
+    margin-bottom: 13px;
+}
+
+.hallway-title {
+    font-size: clamp(34px, 7vw, 64px);
     font-weight: normal;
     letter-spacing: 2px;
 }
 
-.header-subtitle {
-    color: #a99582;
+.hallway-subtitle {
+    margin-top: 12px;
 
-    font-size: 15px;
-    letter-spacing: 1px;
+    color: #918475;
+
+    font-size: 14px;
 }
 
-.progress {
+#progress {
     margin-top: 18px;
 
-    color: #8f7c6a;
+    color: #a99781;
 
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 2px;
 }
 
 /* =========================
-   DOORS
+   DOOR GRID
 ========================= */
 
 #doors {
-    width: min(1200px, 100%);
-
+    width: min(1100px, 100%);
     margin: 0 auto;
 
     display: grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(155px, 1fr)
-        );
+        repeat(4, minmax(0, 1fr));
 
-    gap: 22px;
-}
-
-.door-wrap {
-    perspective: 900px;
+    gap: 20px;
 }
 
 .door {
     position: relative;
 
-    height: 220px;
+    min-height: 180px;
+
+    padding: 25px 15px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    color: #d9cbb9;
 
     background:
         linear-gradient(
             145deg,
-            #3b271c,
-            #1d120d 55%,
-            #0e0907
+            rgba(76, 49, 31, 0.82),
+            rgba(31, 20, 13, 0.95)
         );
 
-    border: 1px solid #614836;
+    border:
+        1px solid
+        rgba(174, 139, 101, 0.3);
 
-    box-shadow:
-        inset 0 0 0 7px rgba(0,0,0,.15),
-        inset 0 0 30px rgba(0,0,0,.5),
-        0 15px 30px rgba(0,0,0,.35);
+    border-radius: 3px;
+
+    font-family: Georgia, "Times New Roman", serif;
 
     cursor: pointer;
 
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 35px rgba(0, 0, 0, 0.55),
+        0 15px 35px rgba(0, 0, 0, 0.3);
+
     transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+        transform 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease,
+        background 0.45s ease;
 }
 
 .door::before {
@@ -241,69 +279,97 @@ body {
 
     position: absolute;
 
-    inset: 12px;
+    inset: 9px;
 
-    border: 1px solid
-        rgba(188,155,122,.25);
+    border:
+        1px solid
+        rgba(198, 164, 123, 0.12);
 
     pointer-events: none;
 }
 
-.door:hover {
-    transform: translateY(-6px);
+.door::after {
+    content: "";
 
-    border-color: #a7896b;
-
-    box-shadow:
-        inset 0 0 30px rgba(0,0,0,.55),
-        0 20px 40px rgba(0,0,0,.55);
-}
-
-.door-number {
     position: absolute;
 
-    top: 20px;
-
-    color: #a99078;
-
-    font-size: 11px;
-    letter-spacing: 3px;
-}
-
-.door-label {
-    max-width: 125px;
-
-    color: #eadcca;
-
-    font-size: 18px;
-    line-height: 1.35;
-
-    text-align: center;
-}
-
-.handle {
-    position: absolute;
-
-    top: 50%;
-    right: 22px;
-
-    width: 9px;
-    height: 9px;
+    width: 80px;
+    height: 80px;
 
     border-radius: 50%;
 
-    background: #b29370;
+    background:
+        radial-gradient(
+            circle,
+            rgba(207, 169, 123, 0.08),
+            transparent 70%
+        );
 
-    box-shadow:
-        0 0 8px
-        rgba(178,147,112,.3);
+    top: -30px;
+    right: -25px;
+
+    transition: transform 0.5s ease;
 }
 
-.cinematic-open {
+.door:hover {
     transform:
-        perspective(900px)
-        rotateY(-12deg)
-        scale(.98);
+        translateY(-7px)
+        scale(1.015);
+
+    border-color:
+        rgba(207, 169, 123, 0.65);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(91, 59, 37, 0.9),
+            rgba(37, 23, 15, 0.98)
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(0, 0, 0, 0.5),
+        0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+.door:hover::after {
+    transform: scale(2);
+}
+
+.door-number {
+    position: relative;
+    z-index: 2;
+
+    font-size: 31px;
+
+    color: #c8ad8c;
+
+    margin-bottom: 14px;
+}
+
+.door-label {
+    position: relative;
+    z-index: 2;
+
+    max-width: 90%;
+
+    color: #b8aa99;
+
+    font-size: 12px;
+    letter-spacing: 1.5px;
+
+    text-align: center;
+    line-height: 1.5;
+}
+
+.door.opened {
+    border-color:
+        rgba(177, 143, 103, 0.22);
+
+    opacity: 0.72;
+}
+
+.door.opened .door-number {
+    color: #8e7962;
 }
 
 /* =========================
@@ -314,20 +380,23 @@ body {
     position: fixed;
     inset: 0;
 
-    z-index: 900;
-
-    background: #000;
+    background: #050403;
 
     opacity: 0;
+    visibility: hidden;
+
+    z-index: 900;
 
     pointer-events: none;
 
     transition:
-        opacity .45s ease;
+        opacity 0.7s ease,
+        visibility 0.7s ease;
 }
 
-#doorTransition.show {
+#doorTransition.active {
     opacity: 1;
+    visibility: visible;
 }
 
 /* =========================
@@ -338,7 +407,7 @@ body {
     position: fixed;
     inset: 0;
 
-    z-index: 950;
+    z-index: 1100;
 
     display: flex;
     align-items: center;
@@ -347,167 +416,233 @@ body {
     padding: 25px;
 
     background:
-        rgba(0,0,0,.78);
+        rgba(3, 2, 2, 0.9);
 
-    opacity: 0;
-    visibility: hidden;
+    backdrop-filter: blur(8px);
 
-    transition:
-        opacity .4s ease,
-        visibility .4s ease;
-}
-
-#modal.show {
     opacity: 1;
     visibility: visible;
+
+    transition:
+        opacity 0.45s ease,
+        visibility 0.45s ease;
 }
 
-.modal-box {
+#modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal-content {
     position: relative;
 
-    width: min(720px, 100%);
+    width: min(760px, 100%);
     max-height: 90vh;
 
     overflow-y: auto;
 
     padding:
-        35px 30px 30px;
+        clamp(30px, 6vw, 60px)
+        clamp(22px, 6vw, 65px);
 
     background:
         linear-gradient(
             145deg,
-            #211611,
-            #100b08
+            #17100b,
+            #0c0806
         );
 
-    border: 1px solid #5c4535;
+    border:
+        1px solid
+        rgba(191, 156, 116, 0.35);
 
     box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.7);
+        0 30px 90px rgba(0, 0, 0, 0.75);
+
+    animation: modalOpen 0.55s ease;
 }
 
-.modal-door {
-    margin-bottom: 12px;
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(0.96);
+    }
 
-    color: #8f7864;
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
 
-    font-size: 11px;
+#closeButton {
+    position: absolute;
+
+    top: 14px;
+    right: 17px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    background: transparent;
+
+    color: #9c8b77;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+#closeButton:hover {
+    color: #e3d3c0;
+    transform: rotate(90deg);
+}
+
+#modalDoor {
+    color: #8e7962;
+
+    font-size: 10px;
     letter-spacing: 4px;
+    text-transform: uppercase;
+
+    margin-bottom: 13px;
 }
 
-.modal-title {
-    margin-bottom: 25px;
+#modalTitle {
+    color: #e8d9c7;
 
-    font-size:
-        clamp(27px, 6vw, 42px);
+    font-size: clamp(28px, 5vw, 44px);
 
     font-weight: normal;
+
+    line-height: 1.2;
+
+    margin-bottom: 25px;
 }
 
-.modal-message {
-    color: #d8c8b8;
+#modalMessage {
+    color: #c4b6a5;
 
-    font-size: 17px;
+    font-size: 16px;
+
     line-height: 1.9;
 
     white-space: pre-line;
 }
 
-.close-button {
-    position: absolute;
-
-    top: 15px;
-    right: 17px;
-
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid #5d4737;
-
-    background: transparent;
-
-    color: #d7c5b3;
-
-    font-size: 20px;
-
-    cursor: pointer;
-}
-
-.close-button:hover {
-    background: #2b1d15;
-}
-
-/* =========================
-   MEDIA
-========================= */
-
 #mediaContainer {
-    margin-top: 28px;
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
 }
 
 #mediaContainer img,
 #mediaContainer video {
     display: block;
 
-    width: 100%;
-    max-height: 65vh;
+    max-width: 100%;
+    max-height: 55vh;
 
-    object-fit: contain;
+    border:
+        1px solid
+        rgba(193, 158, 119, 0.3);
 
-    border: 1px solid #49372b;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-.audio-player {
-    width: 100%;
-}
-
-.media-label {
-    margin-bottom: 10px;
-
-    color: #927a65;
-
-    font-size: 10px;
-    letter-spacing: 3px;
+#mediaContainer audio {
+    width: min(500px, 100%);
 }
 
 /* =========================
    MOBILE
 ========================= */
 
+@media (max-width: 850px) {
+
+    #doors {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+    .door {
+        min-height: 155px;
+    }
+}
+
 @media (max-width: 600px) {
 
     #hallway {
         padding:
-            25px 14px 60px;
+            35px
+            14px
+            60px;
     }
 
     #doors {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
-        gap: 13px;
+        gap: 12px;
     }
 
     .door {
-        height: 190px;
+        min-height: 145px;
+        padding: 20px 10px;
+    }
+
+    .door-number {
+        font-size: 27px;
     }
 
     .door-label {
-        max-width: 110px;
+        font-size: 11px;
+    }
+
+    #modal {
+        padding: 12px;
+    }
+
+    .modal-content {
+        max-height: 94vh;
+        padding: 38px 22px;
+    }
+
+    #modalMessage {
         font-size: 15px;
-    }
-
-    .modal-box {
-        padding:
-            30px 20px 25px;
-    }
-
-    .modal-message {
-        font-size: 16px;
         line-height: 1.8;
     }
+}
 
+@media (max-width: 360px) {
+
+    #doors {
+        gap: 9px;
+    }
+
+    .door {
+        min-height: 135px;
+    }
+
+    .door-label {
+        font-size: 10px;
+    }
 }
 
 </style>
@@ -515,7 +650,7 @@ body {
 
 <body>
 
-<div id="intro">
+<section id="intro">
 
     <div class="intro-content">
 
@@ -528,77 +663,66 @@ body {
         </h1>
 
         <p class="intro-subtitle">
-            One hundred little pieces of us.<br>
-            Take your time.
+            There are things I want you to find.
+            <br>
+            But I'm not going to tell you where they are.
         </p>
 
-        <button
-            class="enter-button"
-            id="enterButton"
-            type="button">
+        <button id="enterButton" type="button">
             Enter
         </button>
 
     </div>
 
-</div>
+</section>
 
-<section id="hallway">
+<main id="hallway" class="hidden">
 
-    <header class="header">
+    <header class="hallway-header">
 
-        <h1 class="header-title">
-            100 Doors For My Princess
-        </h1>
+        <div class="hallway-eyebrow">
+            For My Princess
+        </div>
 
-        <p class="header-subtitle">
-            Every door has something waiting for you.
+        <h2 class="hallway-title">
+            Choose a Door
+        </h2>
+
+        <p class="hallway-subtitle">
+            Take your time. There are 100 of them.
         </p>
 
-        <div
-            class="progress"
-            id="progress">
-            0 / 100 opened
+        <div id="progress">
+            0 / 100 doors opened
         </div>
 
     </header>
 
-    <div id="doors"></div>
+    <section id="doors"></section>
 
-</section>
+</main>
 
 <div id="doorTransition"></div>
 
-<div id="modal">
+<div id="modal" class="hidden">
 
-    <div class="modal-box">
+    <div class="modal-content">
 
         <button
-            class="close-button"
             id="closeButton"
             type="button"
-            aria-label="Close">
+            aria-label="Close"
+        >
             ×
         </button>
 
-        <div
-            class="modal-door"
-            id="modalDoor">
-        </div>
+        <div id="modalDoor"></div>
 
-        <h2
-            class="modal-title"
-            id="modalTitle">
-        </h2>
+        <h2 id="modalTitle"></h2>
 
-        <div
-            class="modal-message"
-            id="modalMessage">
-        </div>
+        <div id="modalMessage"></div>
 
-        <div
-            id="mediaContainer">
-        </div>
+        <div id="mediaContainer"></div>
 
     </div>
 
@@ -607,10 +731,10 @@ body {
 <script>
     const doors = {
 
-1: {
-    type: "text",
-    title: "The First Door",
-    message: `Happy birthday, princess. ❤️
+    1: {
+        type: "text",
+        title: "The First Door",
+        message: `Happy birthday, princess. ❤️
 
 You found the first door.
 
@@ -635,12 +759,12 @@ So take your time, princess.
 Don't skip anything. I KNOW YOU WONT
 
 And whatever you do, don't assume you know what's behind the next door.`
-},
+    },
 
-2: {
-    type: "text",
-    title: "You Probably Never Noticed",
-    message: `You probably never noticed this,
+    2: {
+        type: "text",
+        title: "You Probably Never Noticed",
+        message: `You probably never noticed this,
 
 but there are little things you do that stay in my head for way longer than they should.
 
@@ -659,12 +783,12 @@ You probably don't realize how much these little things mean to me.
 But I notice them.
 
 I always have.`
-},
+    },
 
-3: {
-    type: "text",
-    title: "The First Time",
-    message: `I still remember our first fight, and all the little moments we've spent together.
+    3: {
+        type: "text",
+        title: "The First Time",
+        message: `I still remember our first fight, and all the little moments we've spent together.
 
 But one thing I'll never forget is the first time you came to me when you were upset.
 
@@ -675,12 +799,12 @@ When I saw my phone blowing up, I got very concerned. Then I saw your messages a
 I don't know why, but that moment stayed with me.
 
 Maybe because it was one of the first times I realized that when something hurts you, I genuinely want to be the person you come to.`
-},
+    },
 
-4: {
-    type: "text",
-    title: "When I Miss You",
-    message: `When I miss you,
+    4: {
+        type: "text",
+        title: "When I Miss You",
+        message: `When I miss you,
 
 I look at your pictures.
 
@@ -693,41 +817,41 @@ Maybe it's just a little piece of you when I can't have you around.
 And somehow, seeing your face makes missing you feel a little easier.
 
 Until I miss you even more 😭`
-},
+    },
 
-5: {
-    type: "text",
-    title: "For You",
-    message: `You are the only one I want beside me when life gets difficult.
+    5: {
+        type: "text",
+        title: "For You",
+        message: `You are the only one I want beside me when life gets difficult.
 
 And I hope you know that I want to be that person for you too.
 
 Whatever life throws at us, I want you to know you don't have to face it alone.`
-},
+    },
 
-6: {
-    type: "text",
-    title: "Your Smile",
-    message: `Your smile has no business affecting my entire mood like that.
+    6: {
+        type: "text",
+        title: "Your Smile",
+        message: `Your smile has no business affecting my entire mood like that.
 
 I MEAN LIKE WOW.
 
 HOW ARE YOU SO PRETTY AND HOW ARE U MINEEE??? 😭❤️`
-},
+    },
 
-7: {
-    type: "audio",
-    title: "Listen To Me",
-    message: `Okay, enough reading.
+    7: {
+        type: "audio",
+        title: "Listen To Me",
+        message: `Okay, enough reading.
 
 I want you to hear this one.`,
-    src: "door7.mp3"
-},
+        src: "door7.mp3"
+    },
 
-8: {
-    type: "text",
-    title: "A Tiny Confession",
-    message: `Sometimes I catch myself thinking about you during the most random moments.
+    8: {
+        type: "text",
+        title: "A Tiny Confession",
+        message: `Sometimes I catch myself thinking about you during the most random moments.
 
 I'll be doing something completely normal, and suddenly...
 
@@ -736,12 +860,12 @@ there you are in my head again.
 Honestly, I don't even mind.
 
 I love having you there.`
-},
+    },
 
-9: {
-    type: "image",
-    title: "Just You",
-    message: `Some pictures deserve their own little door.
+    9: {
+        type: "image",
+        title: "Just You",
+        message: `Some pictures deserve their own little door.
 
 Not because of where they were taken.
 
@@ -752,13 +876,13 @@ Just because it's you.
 And honestly, I could probably stare at this picture for way too long.
 
 You really are that pretty, princess.`,
-    src: "Screenshot_20260924-032634.png"
-},
+        src: "Screenshot_20260924-032634.png"
+    },
 
-10: {
-    type: "text",
-    title: "One Thing I Hope You Know",
-    message: `There’s one thing I hope you never forget.
+    10: {
+        type: "text",
+        title: "One Thing I Hope You Know",
+        message: `There’s one thing I hope you never forget.
 
 You don't have to be perfect for me to love you.
 
@@ -777,12 +901,12 @@ You can be completely yourself.
 And I'll still look at you and think,
 
 "Yeah. That's my girl."`
-},
+    },
 
-11: {
-    type: "text",
-    title: "I Know You",
-    message: `I think I've learned your little patterns by now.
+    11: {
+        type: "text",
+        title: "I Know You",
+        message: `I think I've learned your little patterns by now.
 
 I know when you're actually okay and when you say "I'm fine" but you're very obviously not fine.
 
@@ -795,12 +919,12 @@ And I know that sometimes you just want me to stay there with you, even when you
 I don't know how I learned all these little things.
 
 I just know you.`
-},
+    },
 
-12: {
-    type: "text",
-    title: "My Favorite Word",
-    message: `I swear, I don't think I've ever been called "dickhead" this many times by one person.
+    12: {
+        type: "text",
+        title: "My Favorite Word",
+        message: `I swear, I don't think I've ever been called "dickhead" this many times by one person.
 
 And the funny part?
 
@@ -813,25 +937,25 @@ But don't get too comfortable🤪
 I can still call you out when you're wrong.
 
 ...which is basically never, obviously. 🫡`
-},
+    },
 
-13: {
-    type: "image",
-    title: "I Know You Like This One",
-    message: `Okay...
+    13: {
+        type: "image",
+        title: "I Know You Like This One",
+        message: `Okay...
 
 I know you like this one. 🤭
 
 So obviously...
 
 I had to give it its own door.`,
-    src: "YOUR-BICEP-IMAGE-HERE.jpg"
-},
+        src: "YOUR-BICEP-IMAGE-HERE.jpg"
+    },
 
-14: {
-    type: "text",
-    title: "Do You Even Know Me?",
-    message: `Okay princess...
+    14: {
+        type: "text",
+        title: "Do You Even Know Me?",
+        message: `Okay princess...
 
 Let's see how well you actually know me 🧐
 
@@ -878,12 +1002,12 @@ Because if there's one thing you should know about me by now...
 it's that I'm absolutely obsessed with you.
 
 I love you, princess. ❤️`
-},
+    },
 
-15: {
-    type: "text",
-    title: "I Knew",
-    message: `I don't think I've ever told you this properly.
+    15: {
+        type: "text",
+        title: "I Knew",
+        message: `I don't think I've ever told you this properly.
 
 But I knew.
 
@@ -912,13 +1036,11 @@ I'm not saying that because of everything we've built since then.
 I'm saying it because, from the very beginning,
 
 I already knew it was going to be you. ❤️`
-}
-        ,
-
-16: {
-    type: "text",
-    title: "The Random Reels",
-    message: `I think one of my favorite things about us is how completely random our conversations can be 😭
+    },
+            16: {
+        type: "text",
+        title: "The Random Reels",
+        message: `I think one of my favorite things about us is how completely random our conversations can be 😭
 
 You'll send me a reel with absolutely zero context.
 
@@ -949,12 +1071,12 @@ And I hope we never lose that.
 Even years from now, when we're sitting next to each other, I still want you to look at me and say,
 
 "baby, look at this."`
-},
+    },
 
-17: {
-    type: "text",
-    title: "Your Random Updates",
-    message: `You know what's funny?
+    17: {
+        type: "text",
+        title: "Your Random Updates",
+        message: `You know what's funny?
 
 You somehow manage to keep me updated on the most random things 😭
 
@@ -981,12 +1103,12 @@ The completely unnecessary details that somehow become my favorite conversations
 I don't just want the big moments with you, princess.
 
 I want all the boring little ones too. ❤️`
-},
+    },
 
-18: {
-    type: "text",
-    title: "If I Could Steal One Moment",
-    message: `If I could steal one completely ordinary moment with you right now...
+    18: {
+        type: "text",
+        title: "If I Could Steal One Moment",
+        message: `If I could steal one completely ordinary moment with you right now...
 
 I'd probably just sit beside you.
 
@@ -1009,12 +1131,12 @@ And honestly, I think I'd be happy with that.
 Because sometimes I don't need some huge moment with you.
 
 I just want to be close enough that I don't have to miss you anymore. ❤️`
-},
+    },
 
-19: {
-    type: "text",
-    title: "A Question",
-    message: `Can I ask you something, princess?
+    19: {
+        type: "text",
+        title: "A Question",
+        message: `Can I ask you something, princess?
 
 If someone asked me what my favorite part of us is...
 
@@ -1043,12 +1165,12 @@ Don't tell me.
 Just keep the answer somewhere in your heart.
 
 Maybe one day, I'll ask you again. ❤️`
-},
+    },
 
-20: {
-    type: "text",
-    title: "The Version Of Me You Know",
-    message: `There's something I've been thinking about lately.
+    20: {
+        type: "text",
+        title: "The Version Of Me You Know",
+        message: `There's something I've been thinking about lately.
 
 You know a version of me that most people don't.
 
@@ -1091,12 +1213,12 @@ Because with you, I don't feel like I have to pretend to be someone I'm not.
 I can just be your baby.
 
 And somehow, that's enough.`
-},
+    },
 
-21: {
-    type: "text",
-    title: "Even When We Fight",
-    message: `We've had our fights.
+    21: {
+        type: "text",
+        title: "Even When We Fight",
+        message: `We've had our fights.
 
 Some small.
 
@@ -1149,12 +1271,12 @@ And I hope you know...
 no matter how angry I get,
 
 losing you is never what I want. ❤️`
-},
+    },
 
-22: {
-    type: "text",
-    title: "After the Fight",
-    message: `You know what I hate about our fights?
+    22: {
+        type: "text",
+        title: "After the Fight",
+        message: `You know what I hate about our fights?
 
 That moment afterwards.
 
@@ -1187,12 +1309,12 @@ I don't think that'll ever change.
 So if we ever find ourselves on opposite sides of another stupid argument...
 
 just remember that there's always a part of me waiting for us to be okay again. ❤️`
-},
+    },
 
-23: {
-    type: "text",
-    title: "You Make Me Laugh",
-    message: `I don't think you realize how easily you make me laugh.
+    23: {
+        type: "text",
+        title: "You Make Me Laugh",
+        message: `I don't think you realize how easily you make me laugh.
 
 Sometimes you aren't even trying.
 
@@ -1215,12 +1337,12 @@ And honestly...
 having someone who can make you laugh like that is something I never want to take for granted.
 
 So thank you for being my favorite person to be stupid with. ❤️`
-},
+    },
 
-24: {
-    type: "text",
-    title: "Things I Want With You",
-    message: `There are so many things I still want to do with you.
+    24: {
+        type: "text",
+        title: "Things I Want With You",
+        message: `There are so many things I still want to do with you.
 
 I want those random drives where we don't really have anywhere to be, just driving around and talking about whatever comes to mind. I want us to find some little place to eat, probably argue about what to order, and then decide whether it was actually worth it 😭
 
@@ -1239,12 +1361,12 @@ Just being with you.
 Doing life together.
 
 One random day at a time. ❤️`
-},
+    },
 
-25: {
-    type: "text",
-    title: "The First Time I Saw You",
-    message: `I don't think I'll ever forget the first time I saw you in person.
+    25: {
+        type: "text",
+        title: "The First Time I Saw You",
+        message: `I don't think I'll ever forget the first time I saw you in person.
 
 I remember going to the railway station knowing that your train was going to stop in Multan for only fifteen or twenty minutes.
 
@@ -1325,12 +1447,12 @@ And me standing there, completely unable to stop looking at the most beautiful g
 That was the first time I saw you.
 
 And somehow, I still don't think I'll ever get tired of looking at you. ❤️`
-},
+    },
 
-26: {
-    type: "text",
-    title: "If You Were Here",
-    message: `Sometimes I think about what it would be like if you were actually here with me.
+    26: {
+        type: "text",
+        title: "If You Were Here",
+        message: `Sometimes I think about what it would be like if you were actually here with me.
 
 Not on my phone.
 
@@ -1375,12 +1497,12 @@ having you right there will probably feel like the biggest luxury in the world.
 And when that day comes...
 
 I'm not letting you go anywhere.`
-},
+    },
 
-27: {
-    type: "text",
-    title: "The Little Things",
-    message: `I think one of the things I love most about you is how many little things I've come to associate with you.
+    27: {
+        type: "text",
+        title: "The Little Things",
+        message: `I think one of the things I love most about you is how many little things I've come to associate with you.
 
 Certain songs remind me of you.
 
@@ -1413,12 +1535,12 @@ and think of you.
 And honestly?
 
 I kind of love that. ❤️`
-},
+    },
 
-28: {
-    type: "text",
-    title: "You Have No Idea",
-    message: `You genuinely have no idea how much power you have over me 😭
+    28: {
+        type: "text",
+        title: "You Have No Idea",
+        message: `You genuinely have no idea how much power you have over me 😭
 
 One cute picture from you?
 
@@ -1457,12 +1579,12 @@ So yeah...
 you have no idea how much of an effect you have on me.
 
 And honestly, I don't think I ever want you to find out. 😭❤️`
-},
+    },
 
-29: {
-    type: "text",
-    title: "Today Is Yours",
-    message: `Today is your day.
+    29: {
+        type: "text",
+        title: "Today Is Yours",
+        message: `Today is your day.
 
 And I know I've already wished you a happy birthday...
 
@@ -1505,12 +1627,12 @@ And I'm really, really glad you were.
 Happy birthday, my princess. ❤️
 
 I LOVE YOUUU THE MOST💋`
-},
+    },
 
-30: {
-    type: "text",
-    title: "If I Could Tell You One Thing",
-    message: `If I could make you understand just one thing about the way I feel about you...
+    30: {
+        type: "text",
+        title: "If I Could Tell You One Thing",
+        message: `If I could make you understand just one thing about the way I feel about you...
 
 it would be this.
 
@@ -1553,12 +1675,12 @@ come back to this door.
 Read it again.
 
 Because I'll probably spend the rest of my life trying to make sure you never forget. ❤️`
-},
+    },
 
-31: {
-    type: "text",
-    title: "The Way You Care For Me",
-    message: `There's something about the way you care for me that I don't think I'll ever be able to explain properly.
+    31: {
+        type: "text",
+        title: "The Way You Care For Me",
+        message: `There's something about the way you care for me that I don't think I'll ever be able to explain properly.
 
 You make me feel like a baby sometimes 😭
 
@@ -1607,607 +1729,791 @@ Thank you for loving me in all those little ways, princess.
 I notice more than you think.
 
 And I love you for every single one of them. ❤️`
-},
-        32: {
-    type: "text",
-    title: "Door 32",
-    message: `This door is waiting for something special. ❤️`
-},
+    },
+            32: {
+        type: "text",
+        title: "Door 32",
+        message: `Something special is waiting behind this door.
 
-33: {
-    type: "text",
-    title: "Door 33",
-    message: `Something for you is coming here.`
-},
+I'll tell you later. ❤️`
+    },
 
-34: {
-    type: "text",
-    title: "Door 34",
-    message: `A little secret for later. 👀`
-},
+    33: {
+        type: "text",
+        title: "Door 33",
+        message: `A little surprise for my princess.
 
-35: {
-    type: "text",
-    title: "Door 35",
-    message: `This one isn't ready yet, princess. ❤️`
-},
+Not yet though. 👀`
+    },
 
-36: {
-    type: "text",
-    title: "Door 36",
-    message: `Something special belongs here.`
-},
+    34: {
+        type: "text",
+        title: "Door 34",
+        message: `This door is keeping a secret.`
+    },
 
-37: {
-    type: "text",
-    title: "Door 37",
-    message: `Come back to this one later. 🤭`
-},
+    35: {
+        type: "text",
+        title: "Door 35",
+        message: `Something I've been saving for you. ❤️`
+    },
 
-38: {
-    type: "text",
-    title: "Door 38",
-    message: `Still keeping this one a secret.`
-},
+    36: {
+        type: "text",
+        title: "Door 36",
+        message: `You'll find out what's behind this one later.`
+    },
 
-39: {
-    type: "text",
-    title: "Door 39",
-    message: `There's more waiting for you. ❤️`
-},
+    37: {
+        type: "text",
+        title: "Door 37",
+        message: `A tiny secret.
 
-40: {
-    type: "text",
-    title: "Door 40",
-    message: `Forty doors down.
+That's all you're getting for now. 🤭`
+    },
 
-And we're nowhere near finished. 👀`
-},
+    38: {
+        type: "text",
+        title: "Door 38",
+        message: `You made it this far.
 
-41: {
-    type: "text",
-    title: "Door 41",
-    message: `Something special will live behind this door.`
-},
+I'm impressed, princess. ❤️`
+    },
 
-42: {
-    type: "text",
-    title: "Door 42",
-    message: `Classified information. 🫡`
-},
+    39: {
+        type: "text",
+        title: "Door 39",
+        message: `Something belongs behind this door.
 
-43: {
-    type: "text",
-    title: "Door 43",
-    message: `This one is being saved for later. ❤️`
-},
+You'll see.`
+    },
 
-44: {
-    type: "text",
-    title: "Door 44",
-    message: `A little surprise is waiting here.`
-},
+    40: {
+        type: "text",
+        title: "Door 40",
+        message: `FORTY.
 
-45: {
-    type: "text",
-    title: "Door 45",
-    message: `Not ready yet, princess.`
-},
+And somehow there are still sixty doors left. 😭`
+    },
 
-46: {
-    type: "text",
-    title: "Door 46",
-    message: `There's something I want to tell you here.`
-},
+    41: {
+        type: "text",
+        title: "Door 41",
+        message: `I'm keeping this one for later.
 
-47: {
-    type: "text",
-    title: "Door 47",
-    message: `Secret door.
+Trust me. ❤️`
+    },
 
-No spoilers. 👀`
-},
+    42: {
+        type: "text",
+        title: "Door 42",
+        message: `Classified.
 
-48: {
-    type: "text",
-    title: "Door 48",
-    message: `You'll find out eventually.`
-},
+No spoilers. 🫡`
+    },
 
-49: {
-    type: "text",
-    title: "Door 49",
-    message: `One more door before fifty. ❤️`
-},
+    43: {
+        type: "text",
+        title: "Door 43",
+        message: `Something cute is waiting here.
 
-50: {
-    type: "text",
-    title: "Door 50",
-    message: `HALFWAY THERE. 😭❤️
+Eventually. 🤭`
+    },
+
+    44: {
+        type: "text",
+        title: "Door 44",
+        message: `This door is still being prepared. ❤️`
+    },
+
+    45: {
+        type: "text",
+        title: "Door 45",
+        message: `There's something I want you to see here.
+
+Later.`
+    },
+
+    46: {
+        type: "text",
+        title: "Door 46",
+        message: `Another little secret for you. 👀`
+    },
+
+    47: {
+        type: "text",
+        title: "Door 47",
+        message: `I'm not telling you what's behind this one.`
+    },
+
+    48: {
+        type: "text",
+        title: "Door 48",
+        message: `This one is being saved.
+
+Don't worry. ❤️`
+    },
+
+    49: {
+        type: "text",
+        title: "Door 49",
+        message: `One more door before the big halfway point. 👀`
+    },
+
+    50: {
+        type: "text",
+        title: "Door 50",
+        message: `HALFWAY. 😭❤️
 
 Fifty doors down.
 
-Fifty more to go.`
-},
+Fifty more to go.
 
-51: {
-    type: "text",
-    title: "Door 51",
-    message: `Something special is being saved for you.`
-},
+And you still have no idea what's coming.`
+    },
 
-52: {
-    type: "text",
-    title: "Door 52",
-    message: `Patience, princess. ❤️`
-},
+    51: {
+        type: "text",
+        title: "Door 51",
+        message: `Something special will eventually live behind this door.`
+    },
 
-53: {
-    type: "text",
-    title: "Door 53",
-    message: `This door has a secret.`
-},
+    52: {
+        type: "text",
+        title: "Door 52",
+        message: `Patience, princess. ❤️`
+    },
 
-54: {
-    type: "text",
-    title: "Door 54",
-    message: `I'll tell you later. 👀`
-},
+    53: {
+        type: "text",
+        title: "Door 53",
+        message: `There's a little secret hiding here.`
+    },
 
-55: {
-    type: "text",
-    title: "Door 55",
-    message: `Still classified.`
-},
+    54: {
+        type: "text",
+        title: "Door 54",
+        message: `Not telling you yet. 👀`
+    },
 
-56: {
-    type: "text",
-    title: "Door 56",
-    message: `Something cute belongs here. ❤️`
-},
+    55: {
+        type: "text",
+        title: "Door 55",
+        message: `This door is classified information.`
+    },
 
-57: {
-    type: "text",
-    title: "Door 57",
-    message: `Not yet.
+    56: {
+        type: "text",
+        title: "Door 56",
+        message: `Something from me to you will go here. ❤️`
+    },
 
-Keep going.`
-},
+    57: {
+        type: "text",
+        title: "Door 57",
+        message: `Still keeping this one a secret.`
+    },
 
-58: {
-    type: "text",
-    title: "Door 58",
-    message: `Another little secret for you.`
-},
+    58: {
+        type: "text",
+        title: "Door 58",
+        message: `A surprise is waiting here.`
+    },
 
-59: {
-    type: "text",
-    title: "Door 59",
-    message: `You're getting closer. 👀`
-},
+    59: {
+        type: "text",
+        title: "Door 59",
+        message: `You're getting closer.
 
-60: {
-    type: "text",
-    title: "Door 60",
-    message: `SIXTY.
+That's all I'm saying. 🤭`
+    },
 
-You really opened sixty doors for me. 😭❤️`
-},
+    60: {
+        type: "text",
+        title: "Door 60",
+        message: `SIXTY.
 
-61: {
-    type: "text",
-    title: "Door 61",
-    message: `Something I admire about you will go here.`
-},
+You actually opened sixty doors. 😭❤️`
+    },
 
-62: {
-    type: "text",
-    title: "Door 62",
-    message: `A little reminder for my princess. ❤️`
-},
+    61: {
+        type: "text",
+        title: "Door 61",
+        message: `Something I admire about you belongs here. ❤️`
+    },
 
-63: {
-    type: "text",
-    title: "Door 63",
-    message: `You're loved.
+    62: {
+        type: "text",
+        title: "Door 62",
+        message: `A little reminder for my girl.
 
-That's all I'm saying for now.`
-},
+You're loved.`
+    },
 
-64: {
-    type: "text",
-    title: "Door 64",
-    message: `There's more I want to say.`
-},
+    63: {
+        type: "text",
+        title: "Door 63",
+        message: `There's more I want to tell you.`
+    },
 
-65: {
-    type: "text",
-    title: "Door 65",
-    message: `Something meaningful is waiting here. ❤️`
-},
+    64: {
+        type: "text",
+        title: "Door 64",
+        message: `This one is being saved for later.`
+    },
 
-66: {
-    type: "text",
-    title: "Door 66",
-    message: `Okay...
+    65: {
+        type: "text",
+        title: "Door 65",
+        message: `Something meaningful belongs here. ❤️`
+    },
+
+    66: {
+        type: "text",
+        title: "Door 66",
+        message: `Okay...
 
 I definitely have something planned for this one. 😭`
-},
+    },
 
-67: {
-    type: "text",
-    title: "Door 67",
-    message: `Another secret.
+    67: {
+        type: "text",
+        title: "Door 67",
+        message: `Another secret.
 
-Don't ask questions. 🤨`
-},
+No questions. 🤨`
+    },
 
-68: {
-    type: "text",
-    title: "Door 68",
-    message: `You'll understand this one later. ❤️`
-},
+    68: {
+        type: "text",
+        title: "Door 68",
+        message: `You'll understand this one later. ❤️`
+    },
 
-69: {
-    type: "text",
-    title: "Door 69",
-    message: `We're getting closer.
+    69: {
+        type: "text",
+        title: "Door 69",
+        message: `We're getting closer.
 
-That's all you're getting. 👀`
-},
+Very close. 👀`
+    },
 
-70: {
-    type: "text",
-    title: "Door 70",
-    message: `SEVENTY.
+    70: {
+        type: "text",
+        title: "Door 70",
+        message: `SEVENTY.
 
-Only thirty left.
+Only thirty doors left.
 
 Keep going, princess. ❤️`
-},
+    },
+            71: {
+        type: "text",
+        title: "Door 71",
+        message: `There's something about you that I don't think I say enough.
 
-71: {
-    type: "text",
-    title: "Door 71",
-    message: `Something about you belongs here.`
-},
+And you deserve to hear it. ❤️`
+    },
 
-72: {
-    type: "text",
-    title: "Door 72",
-    message: `This door is waiting for its moment.`
-},
+    72: {
+        type: "text",
+        title: "Door 72",
+        message: `One of the many reasons I'm grateful I found you.`
+    },
 
-73: {
-    type: "text",
-    title: "Door 73",
-    message: `A little piece of us will go here. ❤️`
-},
+    73: {
+        type: "text",
+        title: "Door 73",
+        message: `A little reminder:
 
-74: {
-    type: "text",
-    title: "Door 74",
-    message: `Still a secret.`
-},
+You are so much more special than you realize. ❤️`
+    },
 
-75: {
-    type: "text",
-    title: "Door 75",
-    message: `SEVENTY FIVE.
+    74: {
+        type: "text",
+        title: "Door 74",
+        message: `There's a future I keep imagining.
 
-You're getting dangerously close now. 👀❤️`
-},
+And you're always in it.`
+    },
 
-76: {
-    type: "text",
-    title: "Door 76",
-    message: `Something from me to you.`
-},
+    75: {
+        type: "text",
+        title: "Door 75",
+        message: `THREE QUARTERS DONE. 😭
 
-77: {
-    type: "text",
-    title: "Door 77",
-    message: `Lucky number?
+You're officially 75 doors into this madness.
 
-Maybe. 🤭`
-},
+And somehow...
 
-78: {
-    type: "text",
-    title: "Door 78",
-    message: `There's something waiting behind this one.`
-},
+the best ones are still ahead. ❤️`
+    },
 
-79: {
-    type: "text",
-    title: "Door 79",
-    message: `Almost there.
+    76: {
+        type: "text",
+        title: "Door 76",
+        message: `One day I want to show you all the places I've imagined going with you.`
+    },
 
-But not quite.`
-},
+    77: {
+        type: "text",
+        title: "Door 77",
+        message: `I want memories with you that we haven't even made yet. ❤️`
+    },
 
-80: {
-    type: "text",
-    title: "Door 80",
-    message: `EIGHTY.
+    78: {
+        type: "text",
+        title: "Door 78",
+        message: `Imagine us years from now...
 
-Twenty doors left. 😭❤️`
-},
+Looking back at these little doors together.`
+    },
 
-81: {
-    type: "text",
-    title: "Door 81",
-    message: `Something I've wanted to tell you.`
-},
+    79: {
+        type: "text",
+        title: "Door 79",
+        message: `There are so many ordinary days I haven't gotten to spend with you yet.
 
-82: {
-    type: "text",
-    title: "Door 82",
-    message: `This one is for you, princess. ❤️`
-},
+I can't wait for them.`
+    },
 
-83: {
-    type: "text",
-    title: "Door 83",
-    message: `A secret is still hiding here.`
-},
+    80: {
+        type: "text",
+        title: "Door 80",
+        message: `EIGHTY.
 
-84: {
-    type: "text",
-    title: "Door 84",
-    message: `You'll find out soon.`
-},
+Twenty doors left.
 
-85: {
-    type: "text",
-    title: "Door 85",
-    message: `Something special is coming. ❤️`
-},
+Now you should probably start wondering what I've been hiding. 👀`
+    },
 
-86: {
-    type: "text",
-    title: "Door 86",
-    message: `Don't stop now.`
-},
+    81: {
+        type: "text",
+        title: "Door 81",
+        message: `If life ever gets difficult...
 
-87: {
-    type: "text",
-    title: "Door 87",
-    message: `We're getting very close. 👀`
-},
+I hope you remember that I'm always rooting for you. ❤️`
+    },
 
-88: {
-    type: "text",
-    title: "Door 88",
-    message: `Another little surprise for my girl.`
-},
+    82: {
+        type: "text",
+        title: "Door 82",
+        message: `I hope you never forget how deeply loved you are.`
+    },
 
-89: {
-    type: "text",
-    title: "Door 89",
-    message: `Only eleven more. ❤️`
-},
+    83: {
+        type: "text",
+        title: "Door 83",
+        message: `There are things about you that I could probably write an entire book about.
 
-90: {
-    type: "text",
-    title: "Door 90",
-    message: `NINETY.
+Actually...
 
-Ten.
+I kind of did. 😭`
+    },
 
-More.
+    84: {
+        type: "text",
+        title: "Door 84",
+        message: `Sometimes I wish you could see yourself the way I see you.`
+    },
 
-Doors. 😭`
-},
+    85: {
+        type: "text",
+        title: "Door 85",
+        message: `No matter how much time passes,
 
-91: {
-    type: "text",
-    title: "Door 91",
-    message: `The final stretch starts here.`
-},
+I hope I never stop noticing the little things about you. ❤️`
+    },
 
-92: {
-    type: "text",
-    title: "Door 92",
-    message: `Something important is waiting ahead. ❤️`
-},
+    86: {
+        type: "text",
+        title: "Door 86",
+        message: `One day we'll have memories that haven't happened yet.
 
-93: {
-    type: "text",
-    title: "Door 93",
-    message: `Don't assume you know what's coming. 👀`
-},
+And I already know I'll treasure them.`
+    },
 
-94: {
-    type: "text",
-    title: "Door 94",
-    message: `We're getting close now.`
-},
+    87: {
+        type: "text",
+        title: "Door 87",
+        message: `I don't know exactly what the future looks like.
 
-95: {
-    type: "text",
-    title: "Door 95",
-    message: `Five more doors. ❤️`
-},
+But I know who I want beside me while I find out.`
+    },
 
-96: {
-    type: "text",
-    title: "Door 96",
-    message: `Four.`
-},
+    88: {
+        type: "text",
+        title: "Door 88",
+        message: `This one is for all the things we haven't done yet.
 
-97: {
-    type: "text",
-    title: "Door 97",
-    message: `Three.`
-},
+All the places.
 
-98: {
-    type: "text",
-    title: "Door 98",
-    message: `Two.
+All the memories.
 
-Don't get too excited yet. 👀`
-},
+All the ordinary days. ❤️`
+    },
 
-99: {
-    type: "text",
-    title: "Door 99",
-    message: `One door remains.
+    89: {
+        type: "text",
+        title: "Door 89",
+        message: `If I could keep one thing from everything we've built together...
 
-But I'm not letting you open it that easily. ❤️`
-},
+I'd keep the feeling of finding you.`
+    },
 
-100: {
-    type: "text",
-    title: "The Last Door",
-    message: `You made it.
+    90: {
+        type: "text",
+        title: "Door 90",
+        message: `NINETY.
+
+Ten doors left.
+
+Okay princess...
+
+now we're getting somewhere. 👀❤️`
+    },
+
+    91: {
+        type: "text",
+        title: "Door 91",
+        message: `There are some things I haven't said yet.
+
+Not because I don't want to.
+
+I just wanted the right moment.`
+    },
+
+    92: {
+        type: "text",
+        title: "Door 92",
+        message: `You became such a huge part of my life without me even realizing it. ❤️`
+    },
+
+    93: {
+        type: "text",
+        title: "Door 93",
+        message: `Sometimes I look at everything we've been through and think...
+
+how did we get here?
+
+And then I remember.
+
+It was one little moment at a time.`
+    },
+
+    94: {
+        type: "text",
+        title: "Door 94",
+        message: `I hope when you look back at this one day,
+
+you remember how loved you were when you opened it.`
+    },
+
+    95: {
+        type: "text",
+        title: "Door 95",
+        message: `Five doors left.
+
+And I'm starting to run out of ways to hide what I've been saving. 😭`
+    },
+
+    96: {
+        type: "text",
+        title: "Door 96",
+        message: `We're almost there.
+
+But don't you dare start skipping doors now. 😭`
+    },
+
+    97: {
+        type: "text",
+        title: "Door 97",
+        message: `Three more.
+
+You've come way too far to stop now. ❤️`
+    },
+
+    98: {
+        type: "text",
+        title: "Door 98",
+        message: `Two more doors after this.
+
+Take your time, princess.`
+    },
+
+    99: {
+        type: "text",
+        title: "Almost There",
+        message: `You found ninety nine.
+
+One door remains.
+
+Just one.
+
+And honestly...
+
+I'm a little nervous for you to open the last one.
+
+Because this whole thing was never really about the doors.
+
+It was about giving you little pieces of my heart,
+
+one door at a time.
+
+So...
+
+one more. ❤️`
+    },
+
+    100: {
+        type: "text",
+        title: "The Last Door",
+        message: `You made it.
 
 All one hundred doors.
 
-I'll fill this one properly when the time comes.
+And if you've actually opened every single one...
 
-For now...
+then you already know how much you mean to me.
 
-just know that every door was made for you. ❤️`
-}
+But there is one thing I don't think I'll ever be able to put into a hundred doors.
 
-};
+How much I love you.
 
-const enterButton = document.getElementById("enterButton");
-const intro = document.getElementById("intro");
-const hallway = document.getElementById("hallway");
-const doorsContainer = document.getElementById("doors");
+No website.
 
-const modal = document.getElementById("modal");
-const closeButton = document.getElementById("closeButton");
-const modalDoor = document.getElementById("modalDoor");
-const modalTitle = document.getElementById("modalTitle");
-const modalMessage = document.getElementById("modalMessage");
-const mediaContainer = document.getElementById("mediaContainer");
+No letter.
 
-const progressText = document.getElementById("progress");
+No gift.
 
-let openedDoors = new Set();
+No amount of words could ever properly explain it.
 
-function enterHallway() {
-    intro.classList.add("hidden");
-    hallway.classList.remove("hidden");
+You're my princess.
 
-    createDoors();
-    updateProgress();
-}
+My favorite person.
 
-function createDoors() {
-    doorsContainer.innerHTML = "";
+My girl.
 
-    for (let number = 1; number <= 100; number++) {
+And if I could choose you again...
+
+I'd still choose you.
+
+Every single time.
+
+Happy birthday, Eman. ❤️
+
+I love you.
+
+More than these hundred doors could ever hold.`
+    },
+            };
+
+    const intro = document.getElementById("intro");
+    const hallway = document.getElementById("hallway");
+    const enterButton = document.getElementById("enterButton");
+
+    const doorsContainer = document.getElementById("doors");
+    const progress = document.getElementById("progress");
+
+    const modal = document.getElementById("modal");
+    const closeButton = document.getElementById("closeButton");
+
+    const modalDoor = document.getElementById("modalDoor");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+    const mediaContainer = document.getElementById("mediaContainer");
+
+    const doorTransition = document.getElementById("doorTransition");
+
+    const openedDoors = new Set();
+
+
+    function enterHallway() {
+        intro.classList.add("hidden");
+
+        setTimeout(() => {
+            hallway.classList.remove("hidden");
+        }, 500);
+    }
+
+
+    function createDoors() {
+        doorsContainer.innerHTML = "";
+
+        for (let number = 1; number <= 100; number++) {
+
+            const doorData = doors[number];
+
+            const door = document.createElement("button");
+
+            door.type = "button";
+            door.className = "door";
+            door.dataset.number = number;
+
+            const numberElement = document.createElement("div");
+            numberElement.className = "door-number";
+            numberElement.textContent = number;
+
+            const labelElement = document.createElement("div");
+            labelElement.className = "door-label";
+
+            if (doorData && doorData.title) {
+                labelElement.textContent = doorData.title;
+            } else {
+                labelElement.textContent = "A secret waits inside";
+            }
+
+            door.appendChild(numberElement);
+            door.appendChild(labelElement);
+
+            door.addEventListener("click", () => {
+                openDoor(number);
+            });
+
+            doorsContainer.appendChild(door);
+        }
+    }
+
+
+    function openDoor(number) {
+
         const doorData = doors[number];
 
-        if (!doorData) continue;
-
-        const door = document.createElement("button");
-
-        door.type = "button";
-        door.className = "door";
-
-        if (openedDoors.has(number)) {
-            door.classList.add("opened");
+        if (!doorData) {
+            return;
         }
 
-        door.innerHTML = `
-            <span class="door-number">${number}</span>
-            <span class="door-label">${doorData.title}</span>
-        `;
+        openedDoors.add(number);
 
-        door.addEventListener("click", function () {
-            openDoor(number);
-        });
+        updateProgress();
 
-        doorsContainer.appendChild(door);
+        const doorElement =
+            doorsContainer.querySelector(
+                `.door[data-number="${number}"]`
+            );
+
+        if (doorElement) {
+            doorElement.classList.add("opened");
+        }
+
+
+        modalDoor.textContent =
+            "DOOR " + String(number).padStart(2, "0");
+
+        modalTitle.textContent =
+            doorData.title || "A Little Something";
+
+        modalMessage.textContent =
+            doorData.message || "";
+
+        mediaContainer.innerHTML = "";
+
+
+        if (doorData.type === "image" && doorData.src) {
+
+            const image = document.createElement("img");
+
+            image.src = doorData.src;
+            image.alt = doorData.title || "A picture";
+
+            image.addEventListener("error", () => {
+                image.style.display = "none";
+
+                const errorText =
+                    document.createElement("div");
+
+                errorText.textContent =
+                    "The picture couldn't be loaded.";
+
+                errorText.style.color = "#9e9182";
+                errorText.style.fontSize = "14px";
+
+                mediaContainer.appendChild(errorText);
+            });
+
+            mediaContainer.appendChild(image);
+        }
+
+
+        if (doorData.type === "video" && doorData.src) {
+
+            const video = document.createElement("video");
+
+            video.src = doorData.src;
+            video.controls = true;
+            video.playsInline = true;
+
+            mediaContainer.appendChild(video);
+        }
+
+
+        if (doorData.type === "audio" && doorData.src) {
+
+            const audio = document.createElement("audio");
+
+            audio.src = doorData.src;
+            audio.controls = true;
+
+            mediaContainer.appendChild(audio);
+        }
+
+
+        modal.classList.remove("hidden");
+
+        document.body.style.overflow = "hidden";
     }
-}
 
-function openDoor(number) {
-    const doorData = doors[number];
 
-    if (!doorData) return;
+    function closeDoor() {
 
-    openedDoors.add(number);
+        modal.classList.add("hidden");
 
-    modalDoor.textContent = `DOOR ${number}`;
-    modalTitle.textContent = doorData.title;
-
-    modalMessage.textContent = doorData.message;
-
-    mediaContainer.innerHTML = "";
-
-    if (doorData.type === "image" && doorData.src) {
-        const image = document.createElement("img");
-
-        image.src = doorData.src;
-        image.alt = doorData.title;
-
-        mediaContainer.appendChild(image);
+        document.body.style.overflow = "";
     }
 
-    if (doorData.type === "video" && doorData.src) {
-        const video = document.createElement("video");
 
-        video.src = doorData.src;
-        video.controls = true;
-        video.playsInline = true;
+    function updateProgress() {
 
-        mediaContainer.appendChild(video);
+        const count = openedDoors.size;
+
+        progress.textContent =
+            count + " / 100 doors opened";
     }
 
-    if (doorData.type === "audio" && doorData.src) {
-        const audio = document.createElement("audio");
 
-        audio.src = doorData.src;
-        audio.controls = true;
+    enterButton.addEventListener(
+        "click",
+        enterHallway
+    );
 
-        mediaContainer.appendChild(audio);
-    }
 
-    modal.classList.remove("hidden");
+    closeButton.addEventListener(
+        "click",
+        closeDoor
+    );
+
+
+    modal.addEventListener("click", (event) => {
+
+        if (event.target === modal) {
+            closeDoor();
+        }
+
+    });
+
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Escape") {
+            closeDoor();
+        }
+
+    });
+
 
     createDoors();
     updateProgress();
-}
 
-function closeDoor() {
-    modal.classList.add("hidden");
-
-    mediaContainer.innerHTML = "";
-}
-
-function updateProgress() {
-    const count = openedDoors.size;
-
-    if (progressText) {
-        progressText.textContent = `${count} / 100 doors opened`;
-    }
-}
-
-enterButton.addEventListener("click", enterHallway);
-
-closeButton.addEventListener("click", closeDoor);
-
-modal.addEventListener("click", function (event) {
-    if (event.target === modal) {
-        closeDoor();
-    }
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-        closeDoor();
-    }
-});
-
-createDoors();
-updateProgress();
 </script>
 
 </body>
